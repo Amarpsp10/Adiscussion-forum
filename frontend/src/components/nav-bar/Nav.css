@@ -1,0 +1,21 @@
+.nav-section {
+  margin-top: -20px;
+  position: fixed;
+  width: 100%;
+  background-color: #ececec;
+  height: 75px;
+  justify-content: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.mission-ed-logo {
+  display: flex;
+  flex-direction: row;
+}
+.logo-text {
+  color: #ff6200;
+  text-shadow: black 0.8px 0.8px 0.5px;
+  font-size: 30px;
+}
+.logo-text span {
+  color: #fea53f;
+}
