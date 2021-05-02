@@ -1,0 +1,40 @@
+.header-section {
+  height: 100vh;
+  /* padding-inline: 100px; */
+  background-color: rgb(192, 192, 192);
+  padding-block: 10px;
+}
+.header-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.select {
+  background-color: white;
+}
+.create-button {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  background-color: rgb(124, 124, 124);
+  height: 45px;
+  border-radius: 5px;
+  padding-inline: 8px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.create-topic-text {
+  color: white;
+  align-self: center;
+}
+.create-button:hover {
+  opacity: 0.5;
+}
+.feed {
+  background-color: white;
+  height: 200vh;
+  margin-top: 10px;
+  margin-inline: 250px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+/* rgb(192, 192, 192) */

@@ -111,7 +111,7 @@ export default function Nav(){
                         <TextField required={true} id="outlined-basic" label="Confirm Password" variant="outlined" type='password'/>
                         </div>
                         <div style={{display:'flex',flexDirection:'row'}}>
-                        <h3 className={'button-primary'} onClick={()=>setLoginPop(false)}>cancel</h3>
+                        <h3 className={'button-primary'} onClick={()=>setRegisterPop(false)}>cancel</h3>
                         <h3 className={'button-secondary'}>Signup</h3>
                         </div>
                     </div>
