@@ -5,7 +5,6 @@ function App() {
   return (
     <div>
        <HomePage/>
-       <h3 className={'heading'}> hello, this is home-page</h3>
     </div>
   );
 }

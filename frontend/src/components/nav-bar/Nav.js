@@ -39,7 +39,7 @@ export default function Nav(){
     
      return(
         <ThemeProvider theme={theme}>
-            <Paper style={{height:'75px'}}>
+             <Paper style={{height:'75px'}}>
             <div style={{backgroundColor: lightTheme? '#ececec': 'transparent'}} className={'nav-section'}>
                 <div className={'nav-section-sub'}>
                     <div className={'mission-ed-logo'}>
@@ -121,8 +121,8 @@ export default function Nav(){
 
                 </div>
             </div>
-            </Paper>
-        </ThemeProvider>
+             </Paper>
+         </ThemeProvider>
     );
 }
 

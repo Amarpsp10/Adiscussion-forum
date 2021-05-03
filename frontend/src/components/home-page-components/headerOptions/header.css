@@ -1,5 +1,5 @@
 .header-section {
-  height: 100vh;
+  /* height: 100vh; */
   /* padding-inline: 100px; */
   background-color: rgb(192, 192, 192);
   padding-block: 10px;
@@ -38,3 +38,10 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 /* rgb(192, 192, 192) */
+.input-title {
+  width: 60%;
+  height: 40px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fea53f;
+}
