@@ -1,4 +1,4 @@
-import { duration, Paper } from '@material-ui/core';
+import { duration, Paper, TextField } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
 import React,{Component,useState,useEffect,} from 'react'
 import Modal from 'react-modal'
@@ -11,6 +11,11 @@ import {FaPlusSquare} from 'react-icons/fa'
 export default function Header(props){
     const[createTopicPop, setCreateTopicPop] =useState(false);
     const[category, setCategory] = useState([]);
+    
+    const[topicTitle, setTopicTitle] = useState('');
+    const[topicTag, setTopicTag] = useState('');
+    const[topicDiscription,setTopicDescription] = useState('');
+
     const theme = 'dark';
     const options=[
             {id:0,filter:'Question?'},
@@ -47,7 +52,10 @@ export default function Header(props){
                   return { ...provided, opacity, transition };
                 }
               }
-
+    const createTopic =()=>{
+        console.log(topicTitle);
+        console.log(topicDiscription);
+    }
     
      return(
          <div className={'header-section'}>
@@ -75,7 +83,7 @@ export default function Header(props){
                                 // backgroundColor: lightTheme? 'white': '#3a3838',
                                 width:    '70%',
                                 height: '80%',
-                                backgroundColor:'white',
+                                backgroundColor:'#bbbbbb',
                                 borderTopWidth:'3px',
                                 
                               },
@@ -83,20 +91,26 @@ export default function Header(props){
                     <div>
                         <h1 style={{textAlign:'center'}}>Create Topic</h1>
                         <hr></hr>
-                        <div style={{display:'flex', flexDirection:'row'}}>
-                        <input className={'input-title'} maxLength={50}/>
+                        <div style={{display:'flex',flexDirection:'row',justifyContent:'space-around',marginBlock:'20px'}}>
+
+                        <input onChange={(event)=>setTopicTitle(event.target.value)} className={'input-title'} required={true} maxLength={50} placeholder={"Title"}/>
+
                         <div style={{width:'250px'}}>
+                          <div style={{width:'100%',borderWidth:'5px',border:'solid',borderColor:'#7C7C7C',borderRadius:'8px'}}>
                         <Select options={option}/>
+                          </div>
                         </div>
                         </div>
-                        <input className={'input-title'} maxLength={50}/>
+                        <div style={{display:'flex',justifyContent:'center'}}>
+
+                        <textarea onChange={(event)=>setTopicDescription(event.target.value)} className={'input-discription'} rows="5" cols="60" name="text" placeholder="Enter text"></textarea>
+                        </div>
                         <div style={{display:'flex',flexDirection:'row'}}>
                         <h3 className={'button-primary'} onClick={()=> setCreateTopicPop(false)}>Cancel</h3>
-                        <h3 className={'button-secondary'} onClick={()=> setCreateTopicPop(false)}>Create Topic</h3>
+                        <h3 className={'button-secondary'} onClick={()=>createTopic()}  >Create Topic</h3>
                         </div>
                     </div>
                     </Modal>
-                    <div className={'feed'}></div>
          </div>
      );
 }

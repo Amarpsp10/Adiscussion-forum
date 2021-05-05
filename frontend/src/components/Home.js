@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import NavBar from './nav-bar/Nav'
 import Header from './home-page-components/headerOptions/header'
+import Feed from './home-page-components/topic-feed/Feed'
 import { ThemeProvider } from '@material-ui/styles';
 import { Paper, createMuiTheme } from '@material-ui/core';
 export default function Home (){
@@ -18,6 +19,7 @@ export default function Home (){
             <div>
               <NavBar/>
               <Header/>
+              <Feed/>
             </div>
               </Paper>
              </ThemeProvider>

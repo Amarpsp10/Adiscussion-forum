@@ -25,23 +25,36 @@
 .create-topic-text {
   color: white;
   align-self: center;
+  cursor: pointer;
 }
 .create-button:hover {
   opacity: 0.5;
 }
-.feed {
-  background-color: white;
-  height: 200vh;
-  margin-top: 10px;
-  margin-inline: 250px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-}
+
 /* rgb(192, 192, 192) */
 .input-title {
-  width: 60%;
+  width: 70%;
   height: 40px;
-  border-width: 5px;
+  border-width: 4px;
   border-style: solid;
-  border-color: #fea53f;
+  border-color: rgb(124, 124, 124);
+  font-size: large;
+  padding-left: 10px;
+  color: #414141;
+  border-radius: 8px;
+}
+
+.input-discription {
+  width: 95.5%;
+  height: 300px;
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgb(124, 124, 124);
+  font-size: large;
+  padding-left: 10px;
+  color: #414141;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  align-self: center;
 }

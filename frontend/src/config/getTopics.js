@@ -1,4 +1,4 @@
-import {topic} from "./Apis";
+import {baseurl,topic} from "./Apis";
 
 export default async function GetTopics(){
 

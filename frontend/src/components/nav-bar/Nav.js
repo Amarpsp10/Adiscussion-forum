@@ -8,6 +8,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { createMuiTheme, Paper,Button , TextField } from '@material-ui/core';
 import {FiMoon,FiSun} from 'react-icons/fi'
 import axios from 'axios';
+import LoginRequest from './../../config/loginRequest'
+import SignUpRequest from './../../config/signUpRequest'
 
 Modal.setAppElement('#root');
 
@@ -27,7 +29,8 @@ export default function Nav(){
     const[regUsername,setRegUsername] = useState('');
     const[regPassword,setRegPassword] = useState('');
     const[regEmail, setRegEmail] = useState('');
-    const[loginUsername,setLoginUsername] = useState('');
+
+    const[loginEmail,setLoginemail] = useState('');
     const[loginPassword,setLoginPassowrd] = useState('');
 
 
@@ -44,30 +47,10 @@ export default function Nav(){
         }
     })
      async function signUpUser(){
-        console.log(regUsername);
-        console.log(regEmail);
-        console.log(regPassword);
-        const response =  await fetch('http://127.0.0.1:8000/rest-auth/registration/', {
-             mode:'no-cors',
-             method: 'POST',
-             headers: {
-                 "Accept": "application/json",
-                 "Content-type": "application/json",
-                 "Content-length":60,
-                 "X-CSRFToken": 'crf_token'
-             },
-			  body:{
-                  "username":"adminkabaap123",
-                  "email":"amarpsp520@gmail.com",
-                  "password1":"admin@123",
-                  "password2":"admin@123"
-              },
-		});
-        console.log('here is response of mi code :'+response);
+        SignUpRequest(regUsername,regEmail,regPassword);
     }
     const loginUser = () =>{
-        console.log(loginUsername);
-        console.log(loginPassword);
+        LoginRequest(loginEmail,loginPassword);
     }
     const onCancelSignUp = () =>{
         setRegUsername('');
@@ -76,13 +59,9 @@ export default function Nav(){
         setRegisterPop(false);
     }
     const onCancelLogIn = () =>{
-        setLoginUsername('');
+        setLoginemail('');
         setLoginPassowrd('');
         setLoginPop(false);
-    }
-    async function post(){
-        await fetch('http://127.0.0.1:8000/users/')
-        .then(response=>response.json()).then((data)=>console.log(data))
     }
     
      return(
@@ -122,10 +101,10 @@ export default function Nav(){
                             </div>
                         <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'120px',width:'350px'}}>
                         {/* <TextField required={true} id="outlined-basic"  label="Email Address" variant="outlined" type='email'/> */}
-                        <TextField required={true} id="outlined-basic" onChange={(event)=>setLoginUsername(event.target.value)} label="Username" variant="outlined" type='username'/>
+                        <TextField required={true} id="outlined-basic" onChange={(event)=>setLoginemail(event.target.value)} label="Email-Address" variant="outlined" type='email'/>
                         <TextField required={true} id="outlined-basic" onChange={(event)=>setLoginPassowrd(event.target.value)} label="Password" variant="outlined" type='password'/>
                         </div>
-                        <div style={{display:'flex',flexDirection:'row'}}>
+                        <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <h3 className={'button-primary'} onClick={()=>onCancelLogIn()}>cancel</h3>
                         <h3 className={'button-secondary'} onClick={()=>loginUser()}>Login</h3>
                         </div>
@@ -150,7 +129,7 @@ export default function Nav(){
                             <h1>Join MissionEd forum</h1>
                             </div>
                             
-                        <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'250px',width:'100%'}}>
+                        <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'220px',width:'100%'}}>
                         {/* <div>
                         <TextField required={true} id="outlined-basic" label="First Name" variant="outlined" type='text'/>
                         <TextField required={true} id="outlined-basic" label="Last Name" variant="outlined" type='text'/>
@@ -159,8 +138,8 @@ export default function Nav(){
                         <TextField required={true} id="outlined-basic" label="Email Address" onChange={(event)=>setRegEmail(event.target.value)} variant="outlined" type='email'/>
                         <TextField required={true} id="outlined-basic" label="Password" variant="outlined" onChange={(event)=>setRegPassword(event.target.value)} type='password'/>
                         {/* <TextField required={true} id="outlined-basic" label="Confirm Password" variant="outlined" type='password'/> */}
-                        </div>
-                        <div style={{display:'flex',flexDirection:'row'}}>
+                            </div>
+                        <div style={{display:'flex',flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
                         <h3 className={'button-primary'} onClick={()=>onCancelSignUp()}>cancel</h3>
                         <h3 className={'button-secondary'} onClick={()=>signUpUser()}>Signup</h3>
                         </div>
@@ -174,20 +153,4 @@ export default function Nav(){
              </Paper>
          </ThemeProvider>
     );
-}
-
-async function postData(){
-    try{
-        
-    let result = await fetch('http://127.0.0.1:8000/users/', {
-        method: 'Get',
-        headers: {
-            "Accept": "application/json",
-            "Content-type": "application/json"
-        }
-    })
-    console.log('Result'+JSON.stringify(result));
-    } catch(e){
-        console.log(e);
-    }
 }
