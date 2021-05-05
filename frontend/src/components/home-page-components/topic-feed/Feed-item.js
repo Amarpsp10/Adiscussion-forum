@@ -1,15 +1,15 @@
 import React from 'react'
 
-export default function FeedItem() {
+export default function FeedItem(props) {
     
     return(
         <div>
            <div className={'topic-item'}>
                         <div className={'topic-text'}>
-                          <h3>hello this is topic and u csdfjsdl afkjsdh kjf hjkasdan see it here sdfasdfsdafsd dsfasdfsdf</h3>
+                          <h3>{props.title}</h3>
                          </div>
                          <div className={'topic-tag'}>
-                        <h3>Tag line here</h3>
+                        <h3>{props.tag}</h3>
                          </div>
             </div>
             <hr/>

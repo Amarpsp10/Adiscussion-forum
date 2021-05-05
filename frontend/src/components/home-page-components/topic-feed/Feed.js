@@ -11,9 +11,14 @@ export default function Feed(){
    const[loading, setLoading] = useState(true);
    
    useEffect(()=>{
-    //  setFeedList(GetTopics());     
+     let feedlist = GetTopics();
+     setFeedList(feedList);     
      setLoading(feedList ? false:true)
    });
+
+   const feedlist = list.map((data,id)=>{
+       return(<FeedItem title={data.title} tag={data.tag} description={data.description}/>);
+   })
      
     return(
         <div className={'feed-section'}>
@@ -25,20 +30,69 @@ export default function Feed(){
                       </div> 
                 
                       <hr style={{height:'3px',backgroundColor:'#414141'}}/>
-                    {false ?
+                {feedList ?
                     <div>
-                    <FeedItem/>
-                    <FeedItem/>
-                    <FeedItem/>
-                    <FeedItem/>
-                    <FeedItem/>
+                        {feedlist}
                     </div>
-                :   <div className={'loading-box'}>
-                    <div className={'loader'}></div>    
-                </div> 
+                :  
+                    <div className={'loading-box'}>
+                       <div className={'loader'}></div>    
+                    </div> 
                 }  
                       </div>
                  </div>
         </div>
     );
 }
+
+const list = [
+    {
+        id:'1',
+        username:'amrpsp10',
+        title:'1this is title parsed in thsdkfklsdkfjasfs',
+        description:'yea u got it this is descirption',
+        tag:'notag',
+    },
+    {
+        id:'2',
+        username:'amrpsp10',
+        title:'2this is title parsed in thsdkfklsdkfjasfs',
+        description:'yea u got it this is descirption',
+        tag:'notag',
+    },
+    {
+        id:'3',
+        username:'amrpsp10',
+        title:'3this is title parsed in thsdkfklsdkfjasfs',
+        description:'yea u got it this is descirption',
+        tag:'notag',
+    },
+    {
+        id:'4',
+        username:'amrpsp10',
+        title:'4this is title parsed in thsdkfklsdkfjasfs',
+        description:'yea u got it this is descirption',
+        tag:'notag',
+    },
+    {
+        id:'5',
+        username:'amrpsp10',
+        title:'5this is title parsed in thsdkfklsdkfjasfs',
+        description:'yea u got it this is descirption',
+        tag:'notag',
+    },
+    {
+        id:'6',
+        username:'amrpsp10',
+        title:'6this is title parsed in thsdkfklsdkfjasfs',
+        description:'yea u got it this is descirption',
+        tag:'notag',
+    },
+    {
+        id:'7',
+        username:'amrpsp10',
+        title:'7this is title parsed in thsdkfklsdkfjasfs',
+        description:'yea u got it this is descirption',
+        tag:'notag',
+    },
+]
