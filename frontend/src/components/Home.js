@@ -17,7 +17,7 @@ export default function Home (){
             <ThemeProvider theme={theme}>
               <Paper style={{height:'100%'}}>
             <div>
-              <NavBar/>
+              
               <Header/>
               <Feed/>
             </div>
