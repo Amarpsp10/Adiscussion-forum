@@ -31,23 +31,23 @@
   justify-content: center;
 }
 .button-primary {
+  font-weight: 400;
+  color: white;
   cursor: pointer;
-  margin-right: 10px;
-  border: solid;
-  border-width: 3px;
-  color: #ff6200;
-  border-color: #ff914d;
-  background-color: transparent;
-  font-size: 22px;
+  background-color: #ff914d;
+  width: 100px;
+  height: 30px;
+  text-align: center;
   border-radius: 10px;
-  font-weight: 500;
-  padding-inline: 10px;
-  padding-bottom: 2px;
+  font-size: 20px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1.5px 5px 0 rgba(0, 0, 0, 0.19);
 }
 .button-primary:hover {
   background-color: #ff914d;
   color: #ececec;
+}
+.account-login-button {
+  align-self: center;
 }
 .button-secondary {
   cursor: pointer;
@@ -78,4 +78,49 @@
 .theme-button:hover {
   background-color: #616161;
   opacity: 0.5;
+}
+.account-icon-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-icon {
+  border-radius: 50%;
+}
+.account-icon:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.account-menu-box {
+  position: absolute;
+  width: 150px;
+  padding-block: 10px;
+  top: 110%;
+  right: 1%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-menu-item {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 28px;
+  border: solid;
+  border-width: 0;
+  align-content: center;
+  border-bottom-width: 0.5px;
+  border-color: white;
+}
+.account-menu-item:hover {
+  background-color: rgba(129, 129, 129, 0.767);
+}
+.account-menu-item-icon {
+  margin-top: 3px;
+  align-self: center;
+  margin-inline: 10px;
+}
+.account-menu-item h4 {
+  align-self: center;
 }

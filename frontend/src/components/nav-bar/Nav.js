@@ -5,12 +5,13 @@ import MissionEd_logo from './../../assets/MissionEd_logo.svg'
 import { ThemeProvider } from '@material-ui/styles';
 import Modal from 'react-modal'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { createMuiTheme, Paper,Button , TextField } from '@material-ui/core';
+import { createMuiTheme, Paper,Button , TextField,ColorButton } from '@material-ui/core';
 import {FiMoon,FiSun} from 'react-icons/fi'
 import axios from 'axios';
 import LoginRequest from './../../config/loginRequest'
 import SignUpRequest from './../../config/signUpRequest'
-
+import {RiAccountCircleFill} from 'react-icons/ri'
+import AccountMenu from './AccountMenu'
 Modal.setAppElement('#root');
 
 const customStyles = {
@@ -25,6 +26,7 @@ const customStyles = {
   };
 
 export default function Nav(){
+    const[accountMenu,setAccountIconMenu] = useState(false);
     const[user,setUser] = useState([]);
     const[regUsername,setRegUsername] = useState('');
     const[regPassword,setRegPassword] = useState('');
@@ -66,8 +68,8 @@ export default function Nav(){
     
      return(
         <ThemeProvider theme={theme}>
-             <Paper style={{height:'75px'}}>
-            <div style={{backgroundColor: lightTheme? '#ececec': 'transparent'}} className={'nav-section'}>
+             <Paper style={{height:'75px',position:'fixed'}}>
+            <div style={{backgroundColor: lightTheme? '#ececec': '#5A5A5A'}} className={'nav-section'}>
                 <div className={'nav-section-sub'}>
                     <div className={'mission-ed-logo'}>
                         <img className={'logo-image'} src={MissionEd_logo} width={'50px'}/>
@@ -78,8 +80,14 @@ export default function Nav(){
                         { lightTheme ? <FiSun onClick={handleChange} size={35} color={'#ff914d'}/>:<FiMoon onClick={handleChange} size={35} color={'#ff914d'}/>
                          }
                          </div>
-                        <h3 className={'button-primary'} onClick={()=>setLoginPop(true)}>Login</h3>
-                        <h3 className={'button-secondary'} onClick={()=>setRegisterPop(true)}>Register</h3>
+                        <div onClick={()=>setAccountIconMenu(!accountMenu)} className={'account-icon-box'}>
+                        <RiAccountCircleFill className={'account-icon'} size={50} color={theme.color}/>
+                        <div className={'account-menu-box'} style={{display:accountMenu?true:'none',backgroundColor: lightTheme? '#ececec': '#505050'}}>
+                        {/* <h1 className={'button-primary account-login-button'} onClick={()=>setLoginPop(true)}>Login</h1>
+                        <h1 className={'button-primary account-login-button'} onClick={()=>setRegisterPop(true)}>Register</h1> */}
+                          <AccountMenu/>
+                        </div>
+                        </div>
                                  
                     <Modal isOpen={loginPop} onRequestClose={()=>onCancelLogIn()} 
                            style={{
