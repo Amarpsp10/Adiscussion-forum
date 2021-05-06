@@ -4,10 +4,11 @@ from django.db import models
 
 
 class Profile(models.Model):
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True)
     name = models.CharField(max_length=50)
     company = models.CharField(max_length=50)
     about = models.CharField(max_length=100)
+    coins = models.IntegerField()
 
     def __str__(self):
         return self.username
