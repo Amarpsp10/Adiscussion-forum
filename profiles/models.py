@@ -9,7 +9,6 @@ class Profile(models.Model):
     company = models.CharField(max_length=50)
     about = models.CharField(max_length=100)
     location = models.CharField(max_length=50)
-    coins = models.IntegerField()
 
     def __str__(self):
         return self.username
