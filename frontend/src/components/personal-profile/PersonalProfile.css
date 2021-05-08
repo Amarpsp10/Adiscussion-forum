@@ -1,0 +1,97 @@
+.personal-profile-page {
+  background-color: rgb(126, 126, 126);
+  padding-top: 100px;
+  padding-inline: 25%;
+  min-height: 90vh;
+}
+.personal-profile {
+  padding-top: 10px;
+  background-color: rgb(241, 241, 241);
+  min-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.profile-heading {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+}
+.profile-heading text {
+  font-weight: bold;
+  font-size: 25px;
+  align-self: center;
+}
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-inline: 10%;
+}
+.profile-update-input {
+  margin-top: 18px;
+  width: 100%;
+}
+.profile-category-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.profile-category {
+  cursor: pointer;
+  font-size: 18px;
+  margin-inline: 6%;
+  font-weight: bold;
+}
+@media screen and (max-width: 760px) {
+  .personal-profile-page {
+    padding-inline: 1%;
+  }
+}
+.profile-update-button {
+  cursor: pointer;
+  background-color: rgb(97, 97, 97);
+  color: white;
+  padding: 5px;
+  margin-top: 20px;
+}
+.profile-update-button:hover {
+  background-color: rgb(114, 114, 114);
+}
+.reward-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.coins-section {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.coins {
+  background-color: rgb(63, 63, 63);
+  color: rgb(220, 255, 64);
+  padding: 8px;
+  border-radius: 25px;
+}
+.coins-button {
+  cursor: pointer;
+  margin: 12px;
+  background-color: rgb(63, 63, 63);
+  color: rgb(220, 255, 64);
+  padding: 8px;
+  border-radius: 25px;
+}
+.coins-button:hover {
+  background-color: rgb(97, 97, 97);
+}
+.profile-heading img {
+  border-radius: 50%;
+  width: 80px;
+  margin: 5px;
+  box-shadow: gray 2px 2px 1px;
+}
