@@ -5,5 +5,6 @@ from .models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['id', 'username', 'name', 'company', 'about']
+    list_display = ['id', 'username',
+                    'name', 'company', 'about', 'profile_img']
     list_filter = ['username']
