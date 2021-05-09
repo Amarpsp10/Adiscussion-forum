@@ -1,8 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import './Feed.css'
-
 import FeedItem from './Feed-item'
-
 import GetTopics from '../../../config/getTopics'
 
 export default function Feed(){
@@ -22,13 +20,9 @@ export default function Feed(){
      
     return(
         <div className={'feed-section'}>
-            <div className={'feed'}>
+            <div style={{backgroundColor:true? 'white':'#5A5A5A'}} className={'feed'}>   
                       <div className={'topic-item-box'}>
-                       <div style={{display:'flex',flexDirection:'row',justifyContent:'space-between',paddingInline:'30px',color:'#414141'}}>
-                          <h2>Topic</h2>
-                          <h2>Category</h2>
-                      </div> 
-                
+                          <h2>Posts</h2>
                       <hr style={{height:'3px',backgroundColor:'#414141'}}/>
                 {feedList ?
                     <div>

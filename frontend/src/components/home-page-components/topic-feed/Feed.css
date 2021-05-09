@@ -3,9 +3,7 @@
   padding-top: 15px;
 }
 .feed {
-  background-color: rgb(51, 51, 51);
-  min-height: 90vh;
-
+  min-height: 190vh;
   margin-inline: 10%;
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
@@ -19,11 +17,17 @@
   flex-direction: row;
   justify-content: space-between;
 }
-
+.topic-item:hover {
+  background-color: rgba(0, 0, 0, 0.301);
+}
 .topic-text {
-  width: 80%;
+  padding-left: 2%;
+  width: 65%;
   cursor: pointer;
-  color: rgb(197, 197, 197);
+  color: rgb(58, 58, 58);
+}
+.nav-link {
+  text-decoration: none;
 }
 .topic-tag {
   width: 20%;
@@ -31,6 +35,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: pointer;
 }
 .topic-tag h3 {
   color: rgb(121, 236, 13);
@@ -61,4 +66,38 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.save-icon-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.save-icon {
+  border-radius: 50%;
+  padding: 2px;
+}
+.save-icon:hover {
+  background-color: rgba(97, 97, 97, 0.568);
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 760px) {
+  .feed {
+    margin-inline: 0.5%;
+  }
+}
+.midle-field {
+  display: flex;
+  flex-direction: row;
+}
+.feed-list-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40px;
+}
+.feed-list-icon img {
+  width: 40px;
+  border-radius: 50%;
 }
