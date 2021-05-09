@@ -1,6 +1,7 @@
 import React from 'react'
 import {RiAccountCircleFill} from 'react-icons/ri'
 import {MdLocationOn} from 'react-icons/md'
+import Default from './../../../assets/default.jpg'
 
 export default function Profile(props) {
     return(
@@ -9,7 +10,8 @@ export default function Profile(props) {
 
         <div className={'profile-box'}> 
            <div className={'profile-icon-box'}>
-               <RiAccountCircleFill size={90}/>
+               {/* <RiAccountCircleFill size={90}/> */}
+               <img src={Default}/>
            </div>
            <div className={'profile-text'}>
                  <text className={'profile-username'}>amarpsp10</text>

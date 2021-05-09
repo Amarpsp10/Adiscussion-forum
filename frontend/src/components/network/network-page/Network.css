@@ -17,6 +17,7 @@
 }
 .profile-icon-box {
   width: 90px;
+  margin-right: 5px;
 }
 .profile-text {
   width: 80%;
@@ -69,4 +70,8 @@
   .network-page {
     padding-inline: 1%;
   }
+}
+.profile-icon-box img {
+  width: 90px;
+  border-radius: 50%;
 }
