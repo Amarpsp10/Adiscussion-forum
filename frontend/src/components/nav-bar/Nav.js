@@ -12,6 +12,9 @@ import LoginRequest from './../../config/loginRequest'
 import SignUpRequest from './../../config/signUpRequest'
 import {RiAccountCircleFill} from 'react-icons/ri'
 import AccountMenu from './AccountMenu'
+import {Link} from 'react-router-dom'
+import Default from './../../assets/default.jpg'
+
 Modal.setAppElement('#root');
 
 const customStyles = {
@@ -65,30 +68,35 @@ export default function Nav(){
         setLoginPassowrd('');
         setLoginPop(false);
     }
-    
+    const onFocus = () =>{
+        console.log('sdljf')
+    }
      return(
         <ThemeProvider theme={theme}>
              <Paper style={{height:'75px',position:'fixed'}}>
             <div style={{backgroundColor: lightTheme? '#ececec': '#5A5A5A'}} className={'nav-section'}>
                 <div className={'nav-section-sub'}>
+                    <a href="/" style={{textDecorationLine:'none'}}>
                     <div className={'mission-ed-logo'}>
-                        <img className={'logo-image'} src={MissionEd_logo} width={'50px'}/>
-                        <h1 className={'logo-text'}>Mission<span>Ed</span></h1>
+                        <img className={'logo-image'} src={MissionEd_logo} width={'40px'}/>
+                        <h1 style={{textDecoration:'none',textDecorationLine:'none',}} className={'logo-text'}>Mission<span>Ed</span></h1>
                     </div>
+                    </a>
                     <div className={'nav-bar-menu'}>
-                        <div className={'theme-button'}>
+                        {/* <div className={'theme-button'}>
                         { lightTheme ? <FiSun onClick={handleChange} size={35} color={'#ff914d'}/>:<FiMoon onClick={handleChange} size={35} color={'#ff914d'}/>
                          }
-                         </div>
-                        <div onClick={()=>setAccountIconMenu(!accountMenu)} className={'account-icon-box'}>
-                        <RiAccountCircleFill className={'account-icon'} size={50} color={theme.color}/>
+                         </div> */}
+                        <div onClick={()=>setAccountIconMenu(!accountMenu)} id="imge_icon" className={'account-icon-box'} onBlur={console.log('sdlfdkkjkjkjk')}>
+                        {/* <RiAccountCircleFill className={'account-icon'} size={50} color={theme.color}/> */}
+                        <img src={Default}/>
                         <div className={'account-menu-box'} style={{display:accountMenu?true:'none',backgroundColor: lightTheme? '#ececec': '#505050'}}>
                         {/* <h1 className={'button-primary account-login-button'} onClick={()=>setLoginPop(true)}>Login</h1>
                         <h1 className={'button-primary account-login-button'} onClick={()=>setRegisterPop(true)}>Register</h1> */}
                           <AccountMenu/>
                         </div>
                         </div>
-                                 
+                        
                     <Modal isOpen={loginPop} onRequestClose={()=>onCancelLogIn()} 
                            style={{
                             content : {
