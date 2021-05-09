@@ -17,12 +17,17 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
 from topic import views
-from profiles.views import ProfileViewSet
+from profiles.views import ProfileViewSet, CreateProfile
+from rewards.views import CoinViewSet, UpdateCoin
 from rest_framework import routers
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'topics', views.TopicViewSet)
 router.register(r'profiles', ProfileViewSet)
+router.register(r'coins', CoinViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +35,8 @@ urlpatterns = [
     path(r'rest-auth/registration/',
          csrf_exempt(include('rest_auth.registration.urls'))),
     path('', include(router.urls)),
+    path('profiles/create/', CreateProfile.as_view(), name='createprofile'),
+    path('coins/update/<int:pk>/', UpdateCoin.as_view(), name='updatecoin')
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

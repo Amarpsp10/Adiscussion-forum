@@ -5,4 +5,4 @@ from .models import Coins
 
 @admin.register(Coins)
 class CoinAdmin(admin.ModelAdmin):
-    list_display = ['username', 'coins']
+    list_display = ['id', 'username', 'coins']
