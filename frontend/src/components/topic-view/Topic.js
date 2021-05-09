@@ -5,12 +5,13 @@ import {RiAccountCircleFill} from 'react-icons/ri'
 import { useLocation } from 'react-router';
 import { ThemeProvider } from '@material-ui/styles';
 import Default from './../../assets/default.jpg'
+import {AiOutlineSave,AiFillSave} from 'react-icons/ai'
 export default function Topic(props) {
     
     let Temp = useLocation();
     console.log(Temp.title)
     const[comment, setComment] = useState('');
-
+    const[isSaved, setSave] = useState(false)
     const replyList = list.map(data=>{
            return <Reply username={data.username} reply={data.reply}/>
         });
@@ -20,12 +21,22 @@ export default function Topic(props) {
         console.log(comment);
         
     }
+    const saveClick = ()=>{
+        setSave(!isSaved);
+    }
     return(
         <div className={'topic-page'}>
             <div className={'topic-section'}>
                  <div className={'header'}>
-                    <h1>here is the title of page nothinh else</h1>
-                    <h4>Tag of page</h4>
+                     
+                           <h1>here is the title of page nothinh else</h1>
+                           <h4>Tag of page</h4>
+                             <div onClick={()=>saveClick()}>
+                             {isSaved? 
+                             <div className={'header-heading-save'}><AiFillSave size={20}/><text>Saved</text></div> 
+                             : <div className={'header-heading-save'}><AiOutlineSave size={20}/><text>Save</text></div>
+                            }
+                            </div>
                     <hr/>
                     <div className={'auther'}>
                         <div className={'auther-icon'}>
