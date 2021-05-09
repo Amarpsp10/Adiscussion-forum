@@ -14,7 +14,7 @@ import {RiAccountCircleFill} from 'react-icons/ri'
 import AccountMenu from './AccountMenu'
 import {Link} from 'react-router-dom'
 import Default from './../../assets/default.jpg'
-
+import {BsPencilSquare} from 'react-icons/bs'
 Modal.setAppElement('#root');
 
 const customStyles = {
@@ -34,7 +34,7 @@ export default function Nav(){
     const[regUsername,setRegUsername] = useState('');
     const[regPassword,setRegPassword] = useState('');
     const[regEmail, setRegEmail] = useState('');
-
+    const[shareImage,setShareImage] = useState("");
     const[loginEmail,setLoginemail] = useState('');
     const[loginPassword,setLoginPassowrd] = useState('');
 
@@ -46,6 +46,15 @@ export default function Nav(){
     const handleChange = (event) => {
         setLightTheme(!lightTheme)
       };
+     const handleImage=(e)=>{
+        const image = e.target.files[0];
+    
+        if(image==="" || image=== undefined){
+          alert(`not an image, the file is a  ${typeof image}`)
+          return;
+        }
+        setShareImage(image);
+    }
     const theme = createMuiTheme({
         palette:{
             type: themeMode
@@ -87,13 +96,12 @@ export default function Nav(){
                         { lightTheme ? <FiSun onClick={handleChange} size={35} color={'#ff914d'}/>:<FiMoon onClick={handleChange} size={35} color={'#ff914d'}/>
                          }
                          </div> */}
-                        <div onClick={()=>setAccountIconMenu(!accountMenu)} id="imge_icon" className={'account-icon-box'} onBlur={console.log('sdlfdkkjkjkjk')}>
-                        {/* <RiAccountCircleFill className={'account-icon'} size={50} color={theme.color}/> */}
+                        <div onClick={()=>setAccountIconMenu(!accountMenu)}className={'account-icon-box'} >
                         <img src={Default}/>
                         <div className={'account-menu-box'} style={{display:accountMenu?true:'none',backgroundColor: lightTheme? '#ececec': '#505050'}}>
-                        {/* <h1 className={'button-primary account-login-button'} onClick={()=>setLoginPop(true)}>Login</h1>
-                        <h1 className={'button-primary account-login-button'} onClick={()=>setRegisterPop(true)}>Register</h1> */}
-                          <AccountMenu/>
+                        <h1 className={'button-primary account-login-button'} onClick={()=>setLoginPop(true)}>Login</h1>
+                        <h1 className={'button-primary account-login-button'} onClick={()=>setRegisterPop(true)}>Register</h1>
+                          {/* <AccountMenu/> */}
                         </div>
                         </div>
                         
@@ -135,29 +143,66 @@ export default function Nav(){
                                 bottom                : 'auto',
                                 marginRight           : '-50%',
                                 transform             : 'translate(-50%, -50%)',
-                                backgroundColor: lightTheme? 'white': '#3a3838',
+                                backgroundColor: lightTheme? '#e7e7e7': '#3a3838',
+                                width:'60%',
+                                height:'80%'
                               },
                           }}>
                     <div style={{}}>
 
-                        <div style={{textAlign:'center'}}>
-                            <img src={MissionEd_logo} width={'70px'}/>
-                            <h1>Join MissionEd forum</h1>
+                        <div className={'signup-profile-image'}>
+                            <label htmlFor="file">
+                             <img src={shareImage? URL.createObjectURL(shareImage) : Default} />
+                             <div className={'signup-profile-image-edit-icon'}>
+                                 <BsPencilSquare size={30}/>
+                             </div>
+                            </label> 
+                            <h3>Profile image</h3>
                             </div>
                             
-                        <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'220px',width:'100%'}}>
+                        <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'100%',width:'100%'}}>
                         {/* <div>
                         <TextField required={true} id="outlined-basic" label="First Name" variant="outlined" type='text'/>
                         <TextField required={true} id="outlined-basic" label="Last Name" variant="outlined" type='text'/>
                         </div> */}
-                        <TextField required={true} id="outlined-basic" label="username" onChange={(event)=>setRegUsername(event.target.value)} variant="outlined" type='username'/>
-                        <TextField required={true} id="outlined-basic" label="Email Address" onChange={(event)=>setRegEmail(event.target.value)} variant="outlined" type='email'/>
-                        <TextField required={true} id="outlined-basic" label="Password" variant="outlined" onChange={(event)=>setRegPassword(event.target.value)} type='password'/>
+                        <input id="file" style={{display:'none'}} name={'image'} type="file" onChange={(e)=>handleImage(e)} accept={'image/jpg , image/png'} width="48" height="48"/>
+                        
+                    <div className={'signup-inputs'}>
+                      <div className={'signup-input-group'}>
+                        <div className={'signup-input'}>
+                        <TextField fullWidth required={true} id="outlined-basic" label="Name" onChange={(event)=>console.log(event.target.value)} className={'signup-input'} variant="outlined" type='name'/>
+                        </div>
+                        <div className={'signup-input'}>
+                        <TextField fullWidth required={true} id="outlined-basic" label="username" onChange={(event)=>setRegUsername(event.target.value)} variant="outlined" type='username'/>
+                        </div>
+                      </div>
+                      <div className={'signup-input-group'}>
+                        <div className={'signup-input'}>
+                        <TextField fullWidth required={true} id="outlined-basic" label="Email Address" onChange={(event)=>setRegEmail(event.target.value)} variant="outlined" type='email'/>
+                        </div>
+                        <div  className={'signup-input'}>
+                        <TextField fullWidth required={true} id="outlined-basic" label="Password" variant="outlined" onChange={(event)=>setRegPassword(event.target.value)} type='password'/>
+                        </div>
+                       </div>   
+                       <div className={'signup-company-input'}>
+                        <div className={'signup-input'}>
+                        <TextField fullWidth required={true} id="outlined-basic" label="Copmany" onChange={(event)=>console.log(event.target.value)} variant="outlined" type='text'/>
+                        </div>
+                       </div>
+                        <div className={'signup-input-group'}>
+                        <div className={'signup-input'}>
+                        <TextField fullWidth required={true} id="outlined-basic" label="something about you!" onChange={(event)=>console.log(event.target.value)} variant="outlined" type='text'/>
+                        </div>
+                        <div className={'signup-input'}>
+                        <TextField fullWidth required={true} id="outlined-basic" label="Location" onChange={(event)=>console.log(event.target.value)} variant="outlined" type='location'/>
+                        </div>
+                       </div>
+                    </div>
                         {/* <TextField required={true} id="outlined-basic" label="Confirm Password" variant="outlined" type='password'/> */}
                             </div>
                         <div style={{display:'flex',flexDirection:'row',alignContent:'center',justifyContent:'center'}}>
                         <h3 className={'button-primary'} onClick={()=>onCancelSignUp()}>cancel</h3>
-                        <h3 className={'button-secondary'} onClick={()=>signUpUser()}>Signup</h3>
+                        <h3 className={'button-primary'} onClick={()=>signUpUser()}>Signup</h3>
                         </div>
                     </div>
                     </Modal>

@@ -33,6 +33,7 @@
   justify-content: center;
 }
 .button-primary {
+  margin-inline: 5px;
   font-weight: 400;
   color: white;
   cursor: pointer;
@@ -78,7 +79,7 @@
   border-radius: 30px;
 }
 .theme-button:hover {
-  background-color: #616161;
+  background-color: #e6e6e6;
   opacity: 0.5;
 }
 .account-icon-box {
@@ -145,4 +146,59 @@
 }
 .account-icon-box img:hover {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.signup-profile-image {
+  text-align: center;
+}
+.signup-profile-image img {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+  border: solid 3px;
+  border-color: white;
+}
+.signup-profile-image img:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+.signup-profile-image-edit-icon {
+  position: absolute;
+  right: auto;
+  left: 52%;
+  top: 12%;
+}
+.signup-profile-image-edit-icon:hover {
+  opacity: 0.4;
+}
+.signup-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-block: 5px;
+  margin-inline: 5px;
+  background-color: white;
+}
+.signup-inputs {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 10%;
+}
+.signup-input-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.signup-company-input {
+  padding-inline: 18%;
+}
+@media screen and (max-width: 760px) {
+  .signup-input-group {
+    flex-direction: column;
+  }
+  .signup-company-input {
+    padding-inline: 0%;
+  }
+  .signup-inputs {
+    margin-inline: -35px;
+  }
 }
