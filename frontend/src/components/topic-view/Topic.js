@@ -2,8 +2,13 @@ import react, { useState } from 'react'
 import './Topic.css'
 import Reply from './Reply'
 import {RiAccountCircleFill} from 'react-icons/ri'
+import { useLocation } from 'react-router';
+import { ThemeProvider } from '@material-ui/styles';
+import Default from './../../assets/default.jpg'
 export default function Topic(props) {
     
+    let Temp = useLocation();
+    console.log(Temp.title)
     const[comment, setComment] = useState('');
 
     const replyList = list.map(data=>{
@@ -11,24 +16,41 @@ export default function Topic(props) {
         });
        
     const commented = ()=>{
-        console.log(comment)
+        
+        console.log(comment);
+        
     }
     return(
         <div className={'topic-page'}>
             <div className={'topic-section'}>
-                <div className={'header'}>
-                    <h1>here is the title of page nothin else</h1>
+                 <div className={'header'}>
+                    <h1>here is the title of page nothinh else</h1>
                     <h4>Tag of page</h4>
                     <hr/>
+                    <div className={'auther'}>
+                        <div className={'auther-icon'}>
+                            <img src={Default} />
+                        </div>
+                        <h3>Username123</h3>
+                    </div>
+                    <text className={'topic-description'}>klsdajfkl lds flksd jaklfjsdklj klfs akflsdk fklsdj akldf klsd klf ksdl fksad kl fdklsa fklasdklfj
+                     sdkfajklsd fksd kf sdk fkdskl fkls dkf ksdl fksd kfls dkf ksd k dkf skd jkdksdkds kfsd kf ksd k fksdkkfs dklfaklsdklf klsdajfklf 
+                     lfsdjfklsdklfkfsdk fskdkfsdkfkjdkjkf dk dk dkf ks klf sdkl dk flksdkls aksld fklsd lfk sdlk fskldfklsdlfkdskl</text>
+                 </div>  
+           </div>
+           <div className={'comment-box'}>
+                <div className={'comment-reply-box'}>
+                  <textarea placeholder={'Comment here ......'} onChange={(text)=>setComment(text.target.value)} className={'text-area'}/>
+                  <text className={'comment-button'} onClick={()=>commented()}>Comment</text>
                 </div>
-                <div>
+           </div>
+           <div className={'comments'}>
+               <h2>Comments</h2>
+               <hr/>
+                <div className={'all-replies'}>
                    {replyList}
-                </div>   
-            <div className={'create-reply-box'}>
-              <textarea placeholder={'Comment here ......'} onChange={(text)=>setComment(text.target.value)} className={'text-area'}/>
-              <h3 className={'button-secondary comment-button'} onClick={()=>commented()}>Comment</h3>
-            </div>
-            </div>
+                </div> 
+           </div>
         </div>
     );
 }
@@ -36,27 +58,27 @@ export default function Topic(props) {
 const list = [
     {
         id:'0',
-        username:'amarpsp',
-        reply:'lsdkjfn dslflsd flksdj fkljsad kl fklasdklfj alsdk jfklj asklfj dlsk l sldkf sdlkj klasdjklfjsadkjfklsjdkjfaskljdklsjklfjsdakljfklsdjklfjkljsdasdklfjaklsdjlkjfklasdjkljfsdklajfklsdajklfjdksljf'
+        username:'amarpsp', 
+        reply:'lsdkjfn dslflsd flksdj fkljsad kl fklasdklfj alsdk jfklj asklfj dlsk l sldkf sdlkj klasdjklfjsadkjfk lsj dkjfaskl dklsjklfjsda kljfkl sdjklfjkljsdasdklf jaklsdjlkjfklasdjklj fsdkla fkl sdajklfjdk sljf'
     },
     {
         id:'1',
         username:'amarpsp',
-        reply:'lsdkjfklasdjklfjsadkjfklsjdkjfsdfsd  fsdafsdflsd flksd jfjasdkl fklsd kl fklsd fkl sadkl fkl askljdklsjklfjsdakljfklsdjklfjkljsdasdklfjaklsdjlkjfklasdjkljfsdklajfklsdajklfjdksljf'
+        reply:'lsdkjfkla sdjklfjsadkjfklsjdkjfsdfsd  fsdafsdflsd flksd jfjasdkl fklsd kl fklsd fkl sadkl fkl askljdklsjk lfjsdakljfklsdjk lf jkljsdasdklfjaklsdjlkjfklasdjkljfsdklajfklsdajklfjdksljf'
     },
     {
         id:'2',
         username:'amarpsp',
-        reply:'lsdkjfklasdjklfjsadkjfklsjdkjfaskljdklsjklfjsdakljfklsdjklfjkljsdasdklfjaklsdjlkjfklasdjkljfsdklajfklsdajklfjdksljf'
+        reply:'lsdkjfklasd  jklfjsadkj fklsjdkjfaskljd klsjkl  jsdakljfklsdj kljsdasdklfjakl   sdjlkjfklasdjkljfsd klaj fkl da jdksljf'
     },
     {
         id:'3',
         username:'amarpsp',
-        reply:'lsdkjfklasdjklfjsadkjfklsjdkjfaskljdklsjklfjsdakljfklsdjklfjkljsdasdklfjaklsdjlkjfklasdjkljfsdklajfklsdajklfjdksljf'
+        reply:'lsdkjfkla sdjk lfjsadkjfklsj dkjfaskljdkl klfjsdakljf klsdjk jkljsdasdk lsdjlkjf lasdjk  ljfsd lsdajk ksljf'
     },
     {
         id:'4',
         username:'amarpsp',
-        reply:'lsdkjfklasdjklfjsadkjfklsjdkjfaskljdklsjklfjsdakljfklsdjklfjkljsdasdklfjaklsdjlkjfklasdjkljfsdklajfklsdajklfjdksljf'
-    },
+        reply:'l sdkjfkl sdj fjsadkjfklsjdkjfask ljdklsj klfjsdakljfk lsdjklf kljsdasdklf sdjlkjfklasdjk ljfs kla jfkl sdaj kl ksl jf'
+    }, 
 ]

@@ -1,13 +1,19 @@
 import React from 'react'
 import {RiAccountCircleFill} from 'react-icons/ri'
+import { Link } from 'react-router-dom'
+import Default from '../../assets/default.jpg'
 export default function Reply(props) {
   return(
     <div className={'reply-box'}>
     <div className={'reply'}>
-        <RiAccountCircleFill color={'#A0A0A0'} size={60}/>
-        <div >
-            <h2>{props.username}</h2>
-            <h3>{props.reply}</h3>
+                    <div className={'commenter-auther'}>
+                        <div className={'commenter-icon'}>
+                            <img src={Default}/>
+                        </div>
+                        <h3>{props.username}</h3>
+                    </div>
+            <div>
+            <text style={{fontSize:'15px'}}>{props.reply}</text>
             <hr/>
         </div>
     </div>
