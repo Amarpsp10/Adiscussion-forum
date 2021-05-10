@@ -5,10 +5,11 @@ import {VscAccount} from 'react-icons/vsc'
 import {RiAccountCircleFill} from 'react-icons/ri'
 import {IoLogOut} from 'react-icons/io5'
 import {IoIosSave} from 'react-icons/io' 
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import {IoHome} from 'react-icons/io5'
 
 export default function AccountMenu(props) {
+    
 
     return(
       <div>
@@ -44,14 +45,16 @@ export default function AccountMenu(props) {
             <h4>Saved</h4>
         </div>
         </Link>
-        <Link to="/profil" style={{textDecoration:'none',color:'black'}}>
-        <div onClick={()=>console.log('hellll')} className={'account-menu-item'}>
+        {/* <Link to="/" style={{textDecoration:'none',color:'black'}}> */}
+        <a href='/' style={{textDecoration:'none'}}>
+        <div onClick={()=> localStorage.removeItem('key')} className={'account-menu-item'}>
             <div className={'account-menu-item-icon'}>
             <IoLogOut size={20} />
             </div>
             <h4>Logout</h4>
         </div>
-        </Link>
+        </a>
+        {/* </Link> */}
       </div>
     );
     

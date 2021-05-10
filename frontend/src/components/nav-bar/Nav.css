@@ -181,7 +181,7 @@
 .signup-inputs {
   display: flex;
   flex-direction: column;
-  padding-inline: 10%;
+  /* padding-inline: 21%; */
 }
 .signup-input-group {
   display: flex;
@@ -189,7 +189,7 @@
   justify-content: center;
 }
 .signup-company-input {
-  padding-inline: 18%;
+  /* padding-inline: 18%; */
 }
 @media screen and (max-width: 760px) {
   .signup-input-group {
@@ -197,8 +197,5 @@
   }
   .signup-company-input {
     padding-inline: 0%;
-  }
-  .signup-inputs {
-    margin-inline: -35px;
   }
 }

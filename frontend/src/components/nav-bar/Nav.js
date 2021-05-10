@@ -12,23 +12,27 @@ import LoginRequest from './../../config/loginRequest'
 import SignUpRequest from './../../config/signUpRequest'
 import {RiAccountCircleFill} from 'react-icons/ri'
 import AccountMenu from './AccountMenu'
-import {Link} from 'react-router-dom'
+import {Link, Redirect,useHistory} from 'react-router-dom'
 import Default from './../../assets/default.jpg'
 import {BsPencilSquare} from 'react-icons/bs'
+import WelcomePage from './../welcome-page/welcome'
+
 Modal.setAppElement('#root');
 
-const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)',
-    },
-  };
 
-export default function Nav(){
+export default function Nav(props){
+    const[islogin, setLogin] = useState(loginStatus);
+
+    function loginStatus(){
+       if(localStorage.getItem('key')) 
+           return true;
+       return false 
+    }
+    let history = useHistory();
+    const redirect = () => {
+        history.push('/');
+       }
+
     const[accountMenu,setAccountIconMenu] = useState(false);
     const[user,setUser] = useState([]);
     const[regUsername,setRegUsername] = useState('');
@@ -43,6 +47,7 @@ export default function Nav(){
     const[loginPop, setLoginPop] = useState(false);
     const[registerPop, setRegisterPop] = useState(false);
     const themeMode = lightTheme ? 'light':'dark';
+    const[error,setError] = useState('');
     const handleChange = (event) => {
         setLightTheme(!lightTheme)
       };
@@ -63,8 +68,20 @@ export default function Nav(){
      async function signUpUser(){
         SignUpRequest(regUsername,regEmail,regPassword);
     }
-    const loginUser = () =>{
-        LoginRequest(loginEmail,loginPassword);
+   async function loginUser () {
+        if(loginEmail=='' && loginPassword==''){
+           alert("please fill required field") 
+            return ;
+        } 
+        let response = await LoginRequest(loginEmail,loginPassword);
+        if(response){
+            alert('yes successfully login')
+            setLogin(true);
+            setLoginPop(false);
+            window.location.reload(false);
+            return ;
+        }
+        setError('invalid username and password...');
     }
     const onCancelSignUp = () =>{
         setRegUsername('');
@@ -98,12 +115,18 @@ export default function Nav(){
                          </div> */}
                         <div onClick={()=>setAccountIconMenu(!accountMenu)}className={'account-icon-box'} >
                         <img src={Default}/>
-                        <div className={'account-menu-box'} style={{display:accountMenu?true:'none',backgroundColor: lightTheme? '#ececec': '#505050'}}>
-                        <h1 className={'button-primary account-login-button'} onClick={()=>setLoginPop(true)}>Login</h1>
-                        <h1 className={'button-primary account-login-button'} onClick={()=>setRegisterPop(true)}>Register</h1>
-                          {/* <AccountMenu/> */}
+                     <div className={'account-menu-box'} style={{display:accountMenu?true:'none',backgroundColor: lightTheme? '#ececec': '#505050'}}>
+                        { islogin? 
+                            <AccountMenu/> :
+                            <div>
+                              <h1 className={'button-primary account-login-button'} onClick={()=>setLoginPop(true)}>Login</h1>
+                               <h1 className={'button-primary account-login-button'} onClick={()=>setRegisterPop(true)}>Register</h1>
+                            </div> 
+                        }
                         </div>
                         </div>
+                       
+
                         
                     <Modal isOpen={loginPop} onRequestClose={()=>onCancelLogIn()} 
                            style={{
@@ -119,18 +142,19 @@ export default function Nav(){
                               },
                           }}>
                         
-                        <div style={{textAlign:'center',}}>
+                        <div style={{textAlign:'center'}}>
                             <img src={MissionEd_logo} width={'70px'}/>
-                            <h1>Welcome Back to forum!</h1>
+                            <h3>Welcome Back to forum!</h3>
                             </div>
                         <div style={{display:'flex',flexDirection:'column',justifyContent:'space-between',height:'120px',width:'350px'}}>
                         {/* <TextField required={true} id="outlined-basic"  label="Email Address" variant="outlined" type='email'/> */}
                         <TextField required={true} id="outlined-basic" onChange={(event)=>setLoginemail(event.target.value)} label="Email-Address" variant="outlined" type='email'/>
                         <TextField required={true} id="outlined-basic" onChange={(event)=>setLoginPassowrd(event.target.value)} label="Password" variant="outlined" type='password'/>
                         </div>
+                        <text style={{color:'red',fontSize:'12px'}}>{error}</text>
                         <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
                         <h3 className={'button-primary'} onClick={()=>onCancelLogIn()}>cancel</h3>
-                        <h3 className={'button-secondary'} onClick={()=>loginUser()}>Login</h3>
+                        <h3 className={'button-primary'} onClick={()=>loginUser()}>Login</h3>
                         </div>
                     </Modal>
                     <Modal isOpen={registerPop} onRequestClose={()=>onCancelSignUp()} 
@@ -143,9 +167,10 @@ export default function Nav(){
                                 bottom                : 'auto',
                                 marginRight           : '-50%',
                                 transform             : 'translate(-50%, -50%)',
-                                backgroundColor: lightTheme? '#e7e7e7': '#3a3838',
-                                width:'60%',
+                                backgroundColor: lightTheme? 'white': '#3a3838',
+                                width:'400px',
                                 height:'80%'
+                                
                               },
                           }}>
                     <div style={{}}>
@@ -212,6 +237,7 @@ export default function Nav(){
                 </div>
             </div>
              </Paper>
+            
          </ThemeProvider>
     );
 }

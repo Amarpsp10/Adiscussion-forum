@@ -14,5 +14,17 @@ export default async function LoginRequest(loginEmail,loginPassword){
             email:'',
             password:loginPassword
         }),
-    }).then(res=>{return res.json()}).then(data=>{console.log(JSON.stringify(data))})
+    }).then(res=>{return res.json()})
+    .then(data=>{
+        console.log(JSON.stringify(data))
+        if(data.key) {
+            localStorage.setItem('key',data.key);
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+
+    return response;
 }

@@ -1,0 +1,12 @@
+.inbox-page {
+  background-color: rgb(197, 197, 197);
+  min-height: 100vh;
+  padding-inline: 10%;
+  padding-top: 120px;
+}
+.inbox {
+  background-color: white;
+  height: 80vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+}

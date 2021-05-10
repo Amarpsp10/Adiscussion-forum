@@ -11,7 +11,7 @@ export default function Welcome(params) {
                     <ul>
                         <li>Ask, Discuss and Find Solution</li>
                         <li>Learn and Share your Experience and Problems</li>
-                        <li>Get Rewards on every Activity</li>
+                        <li>Get Rewards on Every Activity</li>
                     </ul>
                 </text>
                     <text className={'welcome-taglines'}>Get Started with Register yourself!</text>
