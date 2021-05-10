@@ -1,0 +1,53 @@
+.welcome-page {
+  height: 95vh;
+  background-color: rgb(112, 112, 112);
+  /* margin-top: -21px; */
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.welcome-content {
+  text-align: center;
+}
+.welcome-heading {
+  font-size: 40px;
+  color: #b5ff3e;
+  font-weight: 800;
+  text-shadow: black 0.1px 0.1px 0.1px;
+}
+.welcome-heading span {
+  color: #8dc92d;
+}
+.welcome-taglines {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.welcome-taglines ul {
+  width: 800px;
+  height: 400px;
+  list-style: none;
+  background-image: url("./../../assets/connecting.svg");
+  background-repeat: no-repeat;
+  resize: both;
+  background-size: contain;
+  font-size: 20px;
+}
+.welcome-taglines img {
+  position: absolute;
+  width: 100px;
+}
+
+@media screen and (max-width: 760px) {
+  .welcome-taglines ul {
+    color: white;
+    width: 320px;
+    height: 300px;
+    font-size: 20px;
+  }
+  .welcome-heading {
+    font-size: 34px;
+  }
+}
