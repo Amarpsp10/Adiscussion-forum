@@ -33,7 +33,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rest-auth/', include('rest_auth.urls')),
     path(r'rest-auth/registration/',
-         csrf_exempt(include('rest_auth.registration.urls'))),
+         include('rest_auth.registration.urls')),
     path('', include(router.urls)),
     path('profiles/create/', CreateProfile.as_view(), name='createprofile'),
     path('coins/update/<int:pk>/', UpdateCoin.as_view(), name='updatecoin'),
