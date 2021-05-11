@@ -1,6 +1,6 @@
 import { baseurl, login } from "./Apis";
 
-export default async function LoginRequest(loginEmail,loginPassword){
+export default async function LoginRequest(loginUsername,loginPassword){
 
     const response =  await fetch(`${baseurl}${login}`, {
         method: 'POST',
@@ -10,7 +10,7 @@ export default async function LoginRequest(loginEmail,loginPassword){
             "X-CSRFToken": "$crf_token"
         },
         body:JSON.stringify({
-            username:loginEmail,
+            username:loginUsername,
             email:'',
             password:loginPassword
         }),
@@ -19,6 +19,8 @@ export default async function LoginRequest(loginEmail,loginPassword){
         console.log(JSON.stringify(data))
         if(data.key) {
             localStorage.setItem('key',data.key);
+            localStorage.setItem('username',loginUsername);
+            localStorage.setItem('password',loginPassword);
             return true;
         }
         else{

@@ -28,6 +28,7 @@ router = routers.DefaultRouter()
 router.register(r'topics', views.TopicViewSet)
 router.register(r'profiles', ProfileViewSet)
 router.register(r'coins', CoinViewSet)
+router.register(r'profile/create', CreateProfile)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,9 +36,10 @@ urlpatterns = [
     path(r'rest-auth/registration/',
          include('rest_auth.registration.urls')),
     path('', include(router.urls)),
-    path('profiles/create/', CreateProfile.as_view(), name='createprofile'),
+
     path('coins/update/<int:pk>/', UpdateCoin.as_view(), name='updatecoin'),
     path('profile/update/<int:pk>/', UpdateProfile.as_view(), name='updateprofile')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# path('profile/create/', CreateProfile.as_view(), name='createprofile'),

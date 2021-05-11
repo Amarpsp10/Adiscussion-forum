@@ -5,5 +5,5 @@ from .models import Profile
 class ProfileSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
-        fields = ['id', 'username', 'name', 'profile_img',
+        fields = ['id', 'username', 'profile_img', 'name',
                   'company', 'about', 'location']

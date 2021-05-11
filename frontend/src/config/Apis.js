@@ -4,6 +4,8 @@ export const baseurl = 'http://127.0.0.1:8000/'
 export const login  = 'rest-auth/login/'
 export const logout = 'rest-auth/logout/'
 export const signup = 'rest-auth/registration/'
+
+// create profile 
 export const createProfile = 'profile/create/'
 
 // all profiles

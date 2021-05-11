@@ -10,6 +10,11 @@ import {IoHome} from 'react-icons/io5'
 
 export default function AccountMenu(props) {
     
+    async function Logout(){
+        localStorage.removeItem('key');
+        localStorage.removeItem('username');
+        localStorage.removeItem('password');
+    }
 
     return(
       <div>
@@ -47,7 +52,7 @@ export default function AccountMenu(props) {
         </Link>
         {/* <Link to="/" style={{textDecoration:'none',color:'black'}}> */}
         <a href='/' style={{textDecoration:'none'}}>
-        <div onClick={()=> localStorage.removeItem('key')} className={'account-menu-item'}>
+        <div onClick={()=> Logout()} className={'account-menu-item'}>
             <div className={'account-menu-item-icon'}>
             <IoLogOut size={20} />
             </div>

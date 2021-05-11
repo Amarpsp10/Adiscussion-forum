@@ -8,6 +8,8 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 
@@ -15,8 +17,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializers
 
+# APIView
 
-class CreateProfile(APIView):
+
+class CreateProfile(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
     parser_classes = [MultiPartParser, FormParser]
 
     def create(self, request, format=None):
