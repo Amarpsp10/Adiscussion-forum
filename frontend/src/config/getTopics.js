@@ -10,6 +10,7 @@ export default async function GetTopics(){
             "X-CSRFToken": "$crf_token"
         },
         
-    }).then(res=>{return res.json()}).then(data=>{console.log(JSON.stringify(data))})
-
+    }).then(res=>{return res.json()}).then(data=>{return data});
+    
+     return response
 }

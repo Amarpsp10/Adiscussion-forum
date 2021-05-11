@@ -1,32 +1,41 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, Component} from 'react'
 import './Feed.css'
 import FeedItem from './Feed-item'
 import GetTopics from '../../../config/getTopics'
 
-export default function Feed(){
+export default class Feed extends Component{
 
-   const[feedList,setFeedList] = useState([]);
-   const[loading, setLoading] = useState(true);
-   
-   useEffect(()=>{
-     let feedlist = GetTopics();
-     setFeedList(feedList);     
-     setLoading(feedList ? false:true)
-   });
+   constructor(props){
+       super(props);
+       this.state = {
+           isLoading : true,
+           feedlist : null
+       }
+   }
 
-   const feedlist = list.map((data,id)=>{
-       return(<FeedItem title={data.title} tag={data.tag} description={data.description}/>);
-   })
-     
-    return(
-        <div className={'feed-section'}>
+   componentDidMount(){
+     GetTopics()
+       .then(data=>{
+           this.setState({
+               isLoading : false,
+               feedlist : data
+           })
+       })
+   }
+
+
+   render(){
+       return(
+           <div className={'feed-section'}>
             <div style={{backgroundColor:true? 'white':'#5A5A5A'}} className={'feed'}>   
                       <div className={'topic-item-box'}>
                           <h2>Posts</h2>
                       <hr style={{height:'3px',backgroundColor:'#414141'}}/>
-                {feedList ?
+                {!this.state.isLoading ?
                     <div>
-                        {feedlist}
+                        {this.state.feedlist.map((data,id)=>{
+                             return(<FeedItem title={data.title} tag={data.tag} description={data.description}/>);
+                         })}
                     </div>
                 :  
                     <div className={'loading-box'}>
@@ -37,29 +46,30 @@ export default function Feed(){
                  </div>
         </div>
     );
+   }  
 }
 
 const list = [
     {
         id:'1',
-        username:'amrpsp10',
-        title:'1this is title parsed in thsdkfklsdkfjasfs',
+        username:'amrpsp10ka bahi',
+        title:'dkjfdks 1this is title parsed in thsdkfklsdkfjasfs',
         description:'yea u got it this is descirption',
-        tag:'notag',
+        tag:'Internship',
     },
     {
         id:'2',
         username:'amrpsp10',
         title:'2this is title parsed in thsdkfklsdkfjasfs',
         description:'yea u got it this is descirption',
-        tag:'notag',
+        tag:'jatt',
     },
     {
         id:'3',
         username:'amrpsp10',
         title:'3this is title parsed in thsdkfklsdkfjasfs',
         description:'yea u got it this is descirption',
-        tag:'notag',
+        tag:'Recomendation',
     },
     {
         id:'4',
