@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {IoIosArrowDown,IoIosArrowUp} from 'react-icons/io'
-export default function CategoryFilter(params) {
+export default function CategoryFilter(props) {
     const[isOpen,setOpen] = useState(false)
     const[category,setCategory] = useState('All Category')
     const clickCategory = ()=>{
@@ -27,9 +27,7 @@ export default function CategoryFilter(params) {
             </div>
         );
     }
-    function onscroll(params) {
-        setOpen(false);
-    }
+   
     return(
         <div style={{display:'flex',flexDirection:'column'}}>
 

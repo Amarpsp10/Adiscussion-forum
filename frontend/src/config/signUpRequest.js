@@ -1,4 +1,4 @@
-import {baseurl, signup} from './Apis'
+import {baseurl, signup, coins} from './Apis'
 export default async function SignUpRequest(regUsername,regEmail,regPassword){
 
 //    console.log(regUsername);
@@ -32,5 +32,19 @@ const response =  await fetch(`${baseurl}${signup}`, {
  localStorage.setItem('username',regUsername);
  localStorage.setItem('Email',regEmail);
  localStorage.setItem('password',regPassword);
+
+ await fetch(`${baseurl}${coins}`, {
+    method: 'POST',
+    headers: {
+        "Accept": "application/json",
+        "Content-type": "application/json",
+        "X-CSRFToken": "$crf_token"
+    },
+    body:JSON.stringify({
+        username: regUsername,
+        coins : 20
+    })
+  }).then(res=>{return res.json()}).then(data=>{ localStorage.setItem('coins_id',data.id) })
+
  return true;
 }

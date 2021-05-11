@@ -17,7 +17,7 @@ export const updateProfile = 'profile/update/'
 // all topics 
 export const topic  = 'topics/'
 
-// allc user's coin
+// allc user's coin + post new user coin on this endpoint
 export const coins = 'coins/'
 
 //send id wich user's coins you want to update

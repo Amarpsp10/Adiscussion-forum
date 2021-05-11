@@ -24,7 +24,6 @@ export default function Home (){
              {islogin?
                        <div>
                          <Header/>
-                         <Feed/>
                        </div> :
                        <Welcome/> 
             }   

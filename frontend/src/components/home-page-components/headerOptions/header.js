@@ -3,19 +3,22 @@ import { ThemeProvider } from '@material-ui/styles';
 import React,{Component,useState,useEffect,} from 'react'
 import Modal from 'react-modal'
 // import Select from "react-dropdown-select";
-import Select from 'react-select'
+// import Select from 'react-select'
 import './header.css'
 import {FaPlusSquare} from 'react-icons/fa'
 import {BsFillPeopleFill} from 'react-icons/bs'
 import {Link} from 'react-router-dom'
-import CategoryFilter from './categoryFIlter'
+// import CategoryFilter from './categoryFIlter'
 import {GoPlus} from 'react-icons/go'
 import {FaInbox} from 'react-icons/fa'
+import {IoIosArrowDown,IoIosArrowUp} from 'react-icons/io'
+import Feed from './../topic-feed/Feed'
+
 
   
 export default function Header(props){
     const[createTopicPop, setCreateTopicPop] =useState(false);
-    const[category, setCategory] = useState([]);
+    const[category, setCategory] = useState('All Category');
     
     const[topicTitle, setTopicTitle] = useState('');
     const[topicTag, setTopicTag] = useState('');
@@ -26,6 +29,16 @@ export default function Header(props){
     const createTopic =()=>{
         console.log(topicTitle);
         console.log(topicDiscription);
+        if(topicTitle==='' && topicDiscription===''){
+            alert('fill the form before create')
+            return ;
+        }
+        return;
+    }
+
+    function GetCategory(category) {
+        console.log(category);
+        setCategory(category);
     }
     
     
@@ -80,7 +93,7 @@ export default function Header(props){
                         <input onChange={(event)=>setTopicTitle(event.target.value)} className={'input-title'} required={true} maxLength={50} placeholder={"Title"}/>
 
                         <div style={{width:'250px'}}>
-                          <CategoryFilter/>
+                          <CategoryFilter />               
                         </div>
                         </div>
                         <div style={{display:'flex',justifyContent:'center'}}>
@@ -93,6 +106,60 @@ export default function Header(props){
                         </div>
                     </div>
                     </Modal>
+                    <Feed filter={category}/>
          </div>
      );
-}
+
+
+
+
+
+     function CategoryFilter(props) {
+         const[isOpen,setOpen] = useState(false)
+         const[category,setCategory] = useState('All Category')
+         const clickCategory = ()=>{
+             setOpen(!isOpen);
+         }
+         const categoryHandle=(props)=>{
+             GetCategory(props)
+             setCategory(props)
+             setOpen(false)
+         }
+         const tags = [
+             {tag:'All Category'},
+             {tag:'General'},
+             {tag:'Question'},
+             {tag:'Experience'},
+             {tag:'Job Notification'},
+             {tag:'Internship'},
+             {tag:'Suggestions'},
+         ];
+     
+         const CategoryItem = (props)=>{
+             return(
+                 <div onClick={()=>categoryHandle(props.tag)} className={'category-filter-item'}>
+                    <text >{props.tag}</text>
+                 </div>
+             );
+         }
+        
+         return(
+             <div style={{display:'flex',flexDirection:'column'}}>
+     
+         <div onClick={()=>clickCategory()} className={'category-filter-box'}>
+             <input value={category} className={'category-filter-input'}/>
+             <div className={'category-filter-icon'}>
+             {isOpen? <IoIosArrowUp/> : <IoIosArrowDown/>}
+     
+             </div>
+             <div style={{display:isOpen?true:'none'}} className={'categories-filter'}>
+                 {tags.map((data)=>{
+                     return <CategoryItem tag={data.tag}/>
+                 })}
+             </div>
+             </div>
+         </div>
+         );
+     }
+    }
+

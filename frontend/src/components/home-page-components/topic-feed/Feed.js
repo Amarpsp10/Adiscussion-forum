@@ -33,7 +33,11 @@ export default class Feed extends Component{
                       <hr style={{height:'3px',backgroundColor:'#414141'}}/>
                 {!this.state.isLoading ?
                     <div>
-                        {this.state.feedlist.map((data,id)=>{
+                        {this.state.feedlist.filter(obj=>{
+                            if(this.props.filter==='All Category') return  obj;
+                            else return obj.tag===this.props.filter;
+                        })
+                        .map((data,id)=>{
                              return(<FeedItem title={data.title} tag={data.tag} description={data.description}/>);
                          })}
                     </div>
