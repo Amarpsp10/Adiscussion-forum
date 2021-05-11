@@ -9,7 +9,7 @@ export const signup = 'rest-auth/registration/'
 export const createProfile = 'profile/create/'
 
 // all profiles
-export const profile = 'profiles/'
+export const profiles = 'profiles/'
 
 //send id of user to update profile 
 export const updateProfile = 'profile/update/'

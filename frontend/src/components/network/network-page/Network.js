@@ -1,16 +1,35 @@
-import { Button} from '@material-ui/core'
-import React from 'react'
+import React,{Component} from 'react'
 import './Network.css'
 import {FaPlusSquare} from 'react-icons/fa'
 import {GiThreeFriends} from 'react-icons/gi'
 import Profile from './Profile'
+import GetProfiles from './../../../config/getProfiles'
 import {FaInbox} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import Header from './../../home-page-components/headerOptions/header'
 
-export default function Network(props) {
+export default class Network extends Component{
+  
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoading: true,
+      profiles : null
+    }
+  }
+
+  componentDidMount(){
+    GetProfiles().then(data=>{
+      this.setState({
+        isLoading : false,
+        profiles : data,
+      })
+    })
+  }
+
+  render(){
     return(
-        <div className={'network-page'}>
+      <div className={'network-page'}>
              <div className={'header-menu'}>
                <Link to='/inbox' style={{textDecoration:'none'}}>
                 <div className={'create-button'}>
@@ -20,19 +39,20 @@ export default function Network(props) {
                </Link>
              </div>
              <div className={'profiles-section'}>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
-                <Profile/>
+                
+                {this.state.isLoading?
+                   <div className={'loading-box'}>
+                     <div className={'loader'}></div>    
+                    </div>
+                    :
+                    <div>{this.state.profiles.map((data,id)=>{
+                      return(<Profile id={id} data={data}/>);
+                      })}
+                      </div> 
+                      }
 
              </div>
         </div>
     );
+  }
 }
