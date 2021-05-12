@@ -1,8 +1,10 @@
 import {baseurl,updateCoins} from './Apis'
+import GetCoins from './getCoins'
+export default async function UpdateCoin(username,coins){
 
-export default async function UpdateCoin(username,coins,id){
-
-    const response =  await fetch(`${baseurl}${updateCoins}${id}/`, {
+    let resp = await GetCoins(username)
+    resp = resp.pop();
+    const response =  await fetch(`${baseurl}${updateCoins}${resp.id}/`, {
         method: 'PUT',
         headers: {
             "Accept": "application/json",
@@ -10,8 +12,8 @@ export default async function UpdateCoin(username,coins,id){
             "X-CSRFToken": "$crf_token"
         },
         body:JSON.stringify({
-            username:baseurl,
-            coins: coins
+            username:username,
+            coins: coins+resp.coins
         }),
     }).then(res=>{return res.json()}).then(data=>{console.log(JSON.stringify(data))})
      console.log('done')

@@ -6,10 +6,23 @@ import { useLocation } from 'react-router';
 import { ThemeProvider } from '@material-ui/styles';
 import Default from './../../assets/default.jpg'
 import {AiOutlineSave,AiFillSave} from 'react-icons/ai'
+import GetProfile from './../../config/getProfile'
+
 export default function Topic(props) {
     
     let Temp = useLocation();
-    console.log(Temp.title)
+
+    const[profile_img,setProfile_img] = useState(ProfileImage);
+    
+    async function ProfileImage(){
+        let response =  await GetProfile(Temp.data.username);
+         if(response!==null){ 
+             setProfile_img(response.pop().profile_img);
+         }
+         else{
+             setProfile_img(Default);
+         }
+     }
     const[comment, setComment] = useState('');
     const[isSaved, setSave] = useState(false)
     const replyList = list.map(data=>{
@@ -29,8 +42,8 @@ export default function Topic(props) {
             <div className={'topic-section'}>
                  <div className={'header'}>
                      
-                           <h1>here is the title of page nothinh else</h1>
-                           <h4>Tag of page</h4>
+                           <h1>{Temp.data.title}</h1>
+                           <h4>{Temp.data.tag}</h4>
                              <div onClick={()=>saveClick()}>
                              {isSaved? 
                              <div className={'header-heading-save'}><AiFillSave size={20}/><text>Saved</text></div> 
@@ -40,13 +53,11 @@ export default function Topic(props) {
                     <hr/>
                     <div className={'auther'}>
                         <div className={'auther-icon'}>
-                            <img src={Default} />
+                            <img src={profile_img} />
                         </div>
-                        <h3>Username123</h3>
+                        <h3>{Temp.data.username}</h3>
                     </div>
-                    <text className={'topic-description'}>klsdajfkl lds flksd jaklfjsdklj klfs akflsdk fklsdj akldf klsd klf ksdl fksad kl fdklsa fklasdklfj
-                     sdkfajklsd fksd kf sdk fkdskl fkls dkf ksdl fksd kfls dkf ksd k dkf skd jkdksdkds kfsd kf ksd k fksdkkfs dklfaklsdklf klsdajfklf 
-                     lfsdjfklsdklfkfsdk fskdkfsdkfkjdkjkf dk dk dkf ks klf sdkl dk flksdkls aksld fklsd lfk sdlk fskldfklsdlfkdskl</text>
+                    <text className={'topic-description'}>{Temp.data.description}</text>
                  </div>  
            </div>
            <div className={'comment-box'}>

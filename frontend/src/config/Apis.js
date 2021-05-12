@@ -20,6 +20,8 @@ export const getProfile = 'profile/get/'
 export const topic  = 'topics/'
 // get topics saved by user and send the username as parameter
 export const savedTopics = 'topics/saved/'
+//update topics saved by user
+export const updateSavedTopics = 'topics/update/saved/'
 
 //  post new user coin on this endpoint
 export const coins = 'coins/'

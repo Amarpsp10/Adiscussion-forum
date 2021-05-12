@@ -38,7 +38,7 @@ export default class Feed extends Component{
                             else return obj.tag===this.props.filter;
                         })
                         .map((data,id)=>{
-                             return(<FeedItem title={data.title} tag={data.tag} description={data.description}/>);
+                             return(<FeedItem data={data}/>);
                          })}
                     </div>
                 :  
