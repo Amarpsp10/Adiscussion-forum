@@ -7,7 +7,8 @@ import { ThemeProvider } from '@material-ui/styles';
 import Welcome from './welcome-page/welcome'
 import { Paper, createMuiTheme } from '@material-ui/core';
 export default function Home (){
-    const[islogin,setLogin] = useState(false);
+    const[islogin,setLogin] = useState(null);
+    
     const theme = createMuiTheme({
         global:{
             type: 'dark'
@@ -20,13 +21,21 @@ export default function Home (){
     },[islogin]);
         return(
             <ThemeProvider theme={theme}>
-              <Paper style={{height:'100%'}} onFocus={()=>console.log('yseljskdjld')}>
+              <Paper style={{height:'100%'}} >
+              {islogin==null ?
+                   <div style={{paddingTop:'300px'}} className={'loading-box'}>
+                   <div className={'loader'}>
+                     </div>    
+                </div> :
+                <div>
              {islogin?
-                       <div>
-                         <Header/>
-                       </div> :
-                       <Welcome/> 
+              <div>
+              <Header/>
+              </div> :
+              <Welcome/> 
             }   
+            </div>
+          }
               </Paper>
              </ThemeProvider>
         );

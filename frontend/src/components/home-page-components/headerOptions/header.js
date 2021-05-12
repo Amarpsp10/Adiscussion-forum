@@ -13,39 +13,54 @@ import {GoPlus} from 'react-icons/go'
 import {FaInbox} from 'react-icons/fa'
 import {IoIosArrowDown,IoIosArrowUp} from 'react-icons/io'
 import Feed from './../topic-feed/Feed'
-
+import CreateTopicRequest from './../../../config/createTopic'
 
   
 export default function Header(props){
     const[createTopicPop, setCreateTopicPop] =useState(false);
     const[category, setCategory] = useState('All Category');
-    
+    const[createTopicTag, setCreateTopicTag] = useState('General')
+    const[createTopicError, setCreateTopicError] = useState('')
     const[topicTitle, setTopicTitle] = useState('');
     const[topicTag, setTopicTag] = useState('');
     const[topicDiscription,setTopicDescription] = useState('');
 
     const theme = 'dark';
    
-    const createTopic =()=>{
+    async function createTopic (){
         console.log(topicTitle);
         console.log(topicDiscription);
+        console.log(createTopicTag);
         if(topicTitle==='' && topicDiscription===''){
-            alert('fill the form before create')
+            alert('fill the all form complete')
             return ;
         }
+        let response =  await CreateTopicRequest(localStorage.getItem('username'),topicTitle,createTopicTag,topicDiscription)
+        if(response){
+            onCancelCrateTopic();
+            window.location.reload(false);
+        }
+        setCreateTopicError('Already Given Title Exist');
         return;
+    }
+    const onCancelCrateTopic =()=>{
+        setCreateTopicTag('General')
+        setTopicTitle('')
+        setTopicDescription('')
+        setCreateTopicPop(false)
     }
 
     function GetCategory(category) {
-        console.log(category);
+        
         setCategory(category);
+       
     }
     
     
      return(
          <div className={'header-section'}>
              <div className={'header-menu'}>
-             <CategoryFilter/>
+             <CategoryFilter onChange={(props)=>GetCategory(props)} value={category} filter={true}/>
              <div style={{display:'flex',flexDirection:'row'}}>
 
              <div onClick={()=>setCreateTopicPop(true)} className={'create-button'}>
@@ -93,15 +108,16 @@ export default function Header(props){
                         <input onChange={(event)=>setTopicTitle(event.target.value)} className={'input-title'} required={true} maxLength={50} placeholder={"Title"}/>
 
                         <div style={{width:'250px'}}>
-                          <CategoryFilter />               
+                          <CategoryFilter onChange={(props) =>setCreateTopicTag(props)} value={createTopicTag} filter={false}/>               
                         </div>
                         </div>
+                        <text style={{color:'red',fontSize:'12px',marginLeft:'40%'}}>{createTopicError}</text>
                         <div style={{display:'flex',justifyContent:'center'}}>
-
                         <textarea onChange={(event)=>setTopicDescription(event.target.value)} className={'input-discription'} name="text" placeholder="Enter text"></textarea>
                         </div>
+                        
                         <div className={'create-post-buttons-box'}>
-                        <text className={'create-post-button'} onClick={()=> setCreateTopicPop(false)}>Cancel</text>
+                        <text className={'create-post-button'} onClick={()=> onCancelCrateTopic()}>Cancel</text>
                         <text className={'create-post-button'} onClick={()=>createTopic()}  >Create Topic</text>
                         </div>
                     </div>
@@ -113,16 +129,14 @@ export default function Header(props){
 
 
 
-
-     function CategoryFilter(props) {
+     function CategoryFilter(param) {
          const[isOpen,setOpen] = useState(false)
-         const[category,setCategory] = useState('All Category')
+         const[intcategory,setintCategory] = useState(param.value)
          const clickCategory = ()=>{
              setOpen(!isOpen);
          }
-         const categoryHandle=(props)=>{
-             GetCategory(props)
-             setCategory(props)
+         function categoryHandle(props){
+             param.onChange(props);
              setOpen(false)
          }
          const tags = [
@@ -134,10 +148,20 @@ export default function Header(props){
              {tag:'Internship'},
              {tag:'Suggestions'},
          ];
+
+         const topic_tags = [
+            {tag:'General'},
+            {tag:'Question'},
+            {tag:'Experience'},
+            {tag:'Job Notification'},
+            {tag:'Internship'},
+            {tag:'Suggestions'},
+        ];
      
          const CategoryItem = (props)=>{
              return(
-                 <div onClick={()=>categoryHandle(props.tag)} className={'category-filter-item'}>
+                 <div onClick={()=>{setintCategory(props.tag)
+                                     categoryHandle(props.tag)}} className={'category-filter-item'}>
                     <text >{props.tag}</text>
                  </div>
              );
@@ -146,14 +170,13 @@ export default function Header(props){
          return(
              <div style={{display:'flex',flexDirection:'column'}}>
      
-         <div onClick={()=>clickCategory()} className={'category-filter-box'}>
-             <input value={category} className={'category-filter-input'}/>
+         <div onClick={()=> clickCategory()} className={'category-filter-box'}>
+             <input value={intcategory} className={'category-filter-input'}/>
              <div className={'category-filter-icon'}>
              {isOpen? <IoIosArrowUp/> : <IoIosArrowDown/>}
-     
              </div>
              <div style={{display:isOpen?true:'none'}} className={'categories-filter'}>
-                 {tags.map((data)=>{
+                 {(param.filter? tags:topic_tags).map((data)=>{
                      return <CategoryItem tag={data.tag}/>
                  })}
              </div>

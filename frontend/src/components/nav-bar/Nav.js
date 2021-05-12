@@ -254,7 +254,7 @@ export default function Nav(props){
                         </div>
                        </div>
                     </div>
-                    <text style={{color:'red',fontSize:'12px'}}>{setSignupError}</text>
+                    <text style={{color:'red',fontSize:'12px'}}>{signupError}</text>
                         {/* <TextField required={true} id="outlined-basic" label="Confirm Password" variant="outlined" type='password'/> */}
                             </div>
                         <div style={{display:'flex',flexDirection:'row',alignContent:'center',justifyContent:'center'}}>

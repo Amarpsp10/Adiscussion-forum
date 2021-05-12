@@ -1,9 +1,7 @@
-import {topic} from "./Apis";
+import {baseurl,topic} from "./Apis";
 
 export default async function CreateTopic(topicUsername,topicTitle,topicTag,topicDescription){
-//     console.log('working the console')
-//    console.log(loginEmail);
-//    console.log(loginPassword)
+
     const response =  await fetch(`${baseurl}${topic}`, {
         method: 'POST',
         headers: {
@@ -16,6 +14,12 @@ export default async function CreateTopic(topicUsername,topicTitle,topicTag,topi
             title: topicTitle,
             tag: topicTag,
             description: topicDescription,
+            replies:'non reply yet'
         }),
-    }).then(res=>{return res.json()}).then(data=>{console.log(JSON.stringify(data))})
+    }).then(res=>{return res.json()}).then(data=>{
+        if(data.id) return true;
+        return false
+    })
+    
+    return response;    
 }
