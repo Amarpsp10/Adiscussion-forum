@@ -37,3 +37,12 @@ class CreateProfile(viewsets.ModelViewSet):
 class UpdateProfile(generics.UpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializers
+
+
+class GetProfile(generics.ListAPIView):
+    serializer_class = ProfileSerializers
+
+    def get_queryset(self):
+        username = self.kwargs['pk']
+        print(username)
+        return Profile.objects.filter(username=username)

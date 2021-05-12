@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
 from topic import views
-from profiles.views import ProfileViewSet, CreateProfile, UpdateProfile
-from rewards.views import CoinViewSet, UpdateCoin
+from profiles.views import ProfileViewSet, CreateProfile, UpdateProfile, GetProfile
+from rewards.views import CoinViewSet, UpdateCoin, GetCoins
 from rest_framework import routers
 
 from django.conf import settings
@@ -38,7 +38,9 @@ urlpatterns = [
     path('', include(router.urls)),
 
     path('coins/update/<int:pk>/', UpdateCoin.as_view(), name='updatecoin'),
-    path('profile/update/<int:pk>/', UpdateProfile.as_view(), name='updateprofile')
+    path('profile/update/<int:pk>/', UpdateProfile.as_view(), name='updateprofile'),
+    path('profile/get/<str:pk>/', GetProfile.as_view(), name='getprofile'),
+    path('coins/get/<str:pk>/', GetCoins.as_view(), name='getcoins')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

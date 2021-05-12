@@ -14,3 +14,11 @@ class CoinViewSet(viewsets.ModelViewSet):
 class UpdateCoin(generics.UpdateAPIView):
     queryset = Coins.objects.all()
     serializer_class = CoinsSerializer
+
+
+class GetCoins(generics.ListAPIView):
+    serializer_class = CoinsSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['pk']
+        return Coins.objects.filter(username=username)
