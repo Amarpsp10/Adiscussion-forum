@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
-from topic.views import TopicViewSet, GetUserTopic
+from topic.views import TopicViewSet, GetUserTopic, SavedTopics, SavedTopicViewSet
 from profiles.views import ProfileViewSet, CreateProfile, UpdateProfile, GetProfile
 from rewards.views import CoinViewSet, UpdateCoin, GetCoins
 from rest_framework import routers
@@ -29,6 +29,7 @@ router.register(r'topics', TopicViewSet)
 router.register(r'profiles', ProfileViewSet)
 router.register(r'coins', CoinViewSet)
 router.register(r'profile/create', CreateProfile)
+router.register(r'savedtopics', SavedTopicViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,7 +43,9 @@ urlpatterns = [
     path('profile/get/<str:pk>/', GetProfile.as_view(), name='getprofile'),
     path('coins/get/<str:pk>/', GetCoins.as_view(), name='getcoins'),
     path('topics/user/<str:username>/',
-         GetUserTopic.as_view(), name='getuserstopic')
+         GetUserTopic.as_view(), name='getuserstopic'),
+    path('topics/saved/<str:username>/',
+         SavedTopics.as_view(), name='savedtopics')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
