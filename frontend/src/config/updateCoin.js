@@ -1,8 +1,8 @@
-import {baseurl,updateCoin} from './Apis'
+import {baseurl,updateCoins} from './Apis'
 
 export default async function UpdateCoin(username,coins,id){
 
-    const response =  await fetch(`${baseurl,updateCoin}${id}/`, {
+    const response =  await fetch(`${baseurl}${updateCoins}${id}/`, {
         method: 'PUT',
         headers: {
             "Accept": "application/json",

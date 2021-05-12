@@ -17,12 +17,13 @@ import Default from './../../assets/default.jpg'
 import {BsPencilSquare} from 'react-icons/bs'
 import WelcomePage from './../welcome-page/welcome'
 import {baseurl,createProfile} from './../../config/Apis'
+import GetProfile from './../../config/getProfile'
 Modal.setAppElement('#root');
 
 
 export default function Nav(props){
     const[islogin, setLogin] = useState(loginStatus);
-
+    const[profile_img,setProfile_img] = useState(ProfileImage);
     function loginStatus(){
        if(localStorage.getItem('key')) 
            return true;
@@ -32,6 +33,17 @@ export default function Nav(props){
     const redirect = () => {
         history.push('/');
        }
+    async function ProfileImage(){
+        let response =  await GetProfile(localStorage.getItem('username'));
+         if(response!==null){
+             setProfile_img(response.pop().profile_img);
+         }
+         else{
+             setProfile_img(Default);
+         }
+
+        //  return response.profile_img
+     }
 
     const[accountMenu,setAccountIconMenu] = useState(false);
     const[user,setUser] = useState([]);
@@ -145,7 +157,7 @@ export default function Nav(props){
                          }
                          </div> */}
                         <div onClick={()=>setAccountIconMenu(!accountMenu)}className={'account-icon-box'} >
-                        <img src={Default}/>
+                        <img src={profile_img}/>
                      <div className={'account-menu-box'} style={{display:accountMenu?true:'none',backgroundColor: lightTheme? '#ececec': '#505050'}}>
                         { islogin? 
                             <AccountMenu/> :

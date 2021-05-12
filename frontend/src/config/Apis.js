@@ -13,15 +13,22 @@ export const profiles = 'profiles/'
 
 //send id of user to update profile 
 export const updateProfile = 'profile/update/'
+//get the profile of particular user and send username as parameter
+export const getProfile = 'profile/get/'
 
-// all topics 
+//get all topics 
 export const topic  = 'topics/'
+// get topics saved by user and send the username as parameter
+export const savedTopics = 'topics/saved/'
 
-// allc user's coin + post new user coin on this endpoint
+//  post new user coin on this endpoint
 export const coins = 'coins/'
+// get the Coins of particular user and send with username as parameter
+export const getCoins = 'coins/get/'
+//update the coins of user and send parameter as id 
+export const updateCoins = 'coins/update/'
 
-//send id wich user's coins you want to update
-export const updateCoin = 'coins/update/'
+
 
 // send email to reset password
 export const resetPasswordEmail = 'rest-auth/password/reset/'

@@ -1,6 +1,6 @@
 import {baseurl,profiles} from "./Apis";
 
-export default async function GetTopics(profileUsername){
+export default async function GetAllProfiles(){
 
     const response =  await fetch(`${baseurl}${profiles}`, {
         method: 'GET',
