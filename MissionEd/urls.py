@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
-from topic.views import TopicViewSet, GetUserTopic, SavedTopics, SavedTopicViewSet
+from topic.views import TopicViewSet, GetUserTopic, SavedTopics, SavedTopicViewSet, UpdateSavedTopic
 from profiles.views import ProfileViewSet, CreateProfile, UpdateProfile, GetProfile
 from rewards.views import CoinViewSet, UpdateCoin, GetCoins
 from rest_framework import routers
@@ -45,7 +45,9 @@ urlpatterns = [
     path('topics/user/<str:username>/',
          GetUserTopic.as_view(), name='getuserstopic'),
     path('topics/saved/<str:username>/',
-         SavedTopics.as_view(), name='savedtopics')
+         SavedTopics.as_view(), name='savedtopics'),
+    path('topics/update/saved/<int:pk>/',
+         UpdateSavedTopic.as_view(), name='updatesavedtopics')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

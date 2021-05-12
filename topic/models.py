@@ -15,4 +15,4 @@ class Topic(models.Model):
 
 class SavedTopic(models.Model):
     username = models.CharField(max_length=50)
-    saved_topic = models.TextField()
+    saved_topic = models.TextField(blank=True)

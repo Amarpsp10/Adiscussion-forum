@@ -31,3 +31,8 @@ class SavedTopics(generics.ListAPIView):
     def get_queryset(self):
         username = self.kwargs['username']
         return SavedTopic.objects.filter(username=username)
+
+
+class UpdateSavedTopic(generics.UpdateAPIView):
+    queryset = SavedTopic.objects.all()
+    serializer_class = SavedTopicSerializer
