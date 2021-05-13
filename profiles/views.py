@@ -37,6 +37,7 @@ class CreateProfile(viewsets.ModelViewSet):
 class UpdateProfile(generics.UpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializers
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class GetProfile(generics.ListAPIView):

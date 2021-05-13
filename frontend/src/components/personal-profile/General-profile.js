@@ -1,7 +1,7 @@
 import { TextField } from "@material-ui/core";
 import GetProfile from './../../config/getProfile'
 import { Component } from 'react';
-
+import {baseurl, updateProfile} from './../../config/Apis'
 export default class General extends Component{
     constructor(props){
         super(props)
@@ -10,7 +10,8 @@ export default class General extends Component{
             name : '',
             company: '',
             about : '',
-            location: ''
+            location: '',
+            id:''
         }
     }
 
@@ -26,12 +27,26 @@ export default class General extends Component{
             name : response.name,
             company: response.company,
             about : response.about,
-            location: response.location
+            location: response.location,
+            id: response.id
         })
     }
 
-    handleUpdate(){
-        console.log(this.state)
+    async handleUpdate(){
+        let form_data = new FormData();
+        form_data.append('username',localStorage.getItem('username'));
+        form_data.append('name',this.state.name);
+        form_data.append('company',this.state.company);
+        form_data.append('about',this.state.about);
+        form_data.append('location',this.state.location);
+
+        await  axios.put(`${baseurl}${updateProfile}${this.state.id}/`, form_data,  {
+        headers: {
+          'content-type': 'multipart/form-data',
+          "Accept": "application/json",
+         "X-CSRFToken": "$crf_token"
+        }
+      }).then(res=>{if(res.state===200) window.location.reload(false)})
     }
     
     render(){
@@ -57,7 +72,8 @@ export default class General extends Component{
                 name : e.target.value,
                 company: this.state.company,
                 about : this.state.about,
-                location: this.state.location
+                location: this.state.location,
+                id : this.state.id
             })
           }}
           />
@@ -76,7 +92,8 @@ export default class General extends Component{
                 name : this.state.name,
                 company: e.target.value,
                 about : this.state.about,
-                location: this.state.location
+                location: this.state.location,
+                id : this.state.id
             })
           }}
           />
@@ -94,7 +111,8 @@ export default class General extends Component{
                 name : this.state.name,
                 company: this.state.company,
                 about : e.target.value,
-                location: this.state.location
+                location: this.state.location,
+                id : this.state.id
             })
           }}
           />
@@ -111,7 +129,8 @@ export default class General extends Component{
                 name : this.state.name,
                 company: this.state.company,
                 about : this.state.about,
-                location: e.target.value
+                location: e.target.value,
+                id : this.state.id
             })
           }}
           />
