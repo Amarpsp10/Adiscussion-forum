@@ -16,7 +16,7 @@ export const updateProfile = 'profile/update/'
 //get the profile of particular user and send username as parameter
 export const getProfile = 'profile/get/'
 
-//get all topics 
+//get all topics and send id to get particular topic
 export const topic  = 'topics/'
 // get topics saved by user and send the username as parameter
 export const savedTopics = 'topics/saved/'

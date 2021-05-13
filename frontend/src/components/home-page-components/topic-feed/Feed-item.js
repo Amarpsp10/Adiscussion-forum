@@ -21,7 +21,7 @@ export default function FeedItem(props) {
         <div>
            <div className={'topic-item'}>
             <Link to={{     
-                          pathname: '/topic',
+                          pathname: `/topic/${props.data.id}`,
                           data:props.data
         }} className={'topic-text'}>
                         <div >

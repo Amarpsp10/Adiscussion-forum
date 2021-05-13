@@ -20,6 +20,14 @@ class GetUserTopic(generics.ListAPIView):
         return Topic.objects.filter(username=username)
 
 
+class SearchTopics(generics.ListAPIView):
+    serializer_class = TopicSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['title']
+        return Topic.objects.filter(title=title)
+
+
 class SavedTopicViewSet(viewsets.ModelViewSet):
     queryset = SavedTopic.objects.all()
     serializer_class = SavedTopicSerializer

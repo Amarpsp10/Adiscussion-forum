@@ -31,7 +31,7 @@ export default function PersonalProfile(props) {
           <div className={'profile-heading'}>
             {/* <RiAccountCircleFill size={50}/>  */}
             <img src={profile_img}/>
-            <text>Amarpsp10</text>
+            <text>{localStorage.getItem('username')}</text>
           </div>
           
           <div className={'profile-category-box'}>

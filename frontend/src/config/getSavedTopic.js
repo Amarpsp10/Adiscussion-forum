@@ -1,6 +1,6 @@
 import {baseurl,savedTopics} from './Apis'
 
-export default function GetSavedTopic(username) {
+export default async function GetSavedTopic(username) {
 
     const response =  await fetch(`${baseurl}${savedTopics}${username}/`, {
         method: 'GET',

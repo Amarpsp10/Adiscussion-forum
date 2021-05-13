@@ -2,6 +2,7 @@ import { TextField } from "@material-ui/core";
 import GetProfile from './../../config/getProfile'
 import { Component } from 'react';
 import {baseurl, updateProfile} from './../../config/Apis'
+import axios from 'axios'
 export default class General extends Component{
     constructor(props){
         super(props)

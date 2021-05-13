@@ -14,5 +14,5 @@ class Topic(models.Model):
 
 
 class SavedTopic(models.Model):
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True)
     saved_topic = models.TextField(blank=True)

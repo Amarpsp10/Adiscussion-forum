@@ -1,28 +1,30 @@
-import react, { useState } from 'react'
+import react, { useState, useEffect} from 'react'
 import './Topic.css'
 import Reply from './Reply'
 import {RiAccountCircleFill} from 'react-icons/ri'
-import { useLocation } from 'react-router';
 import { ThemeProvider } from '@material-ui/styles';
 import Default from './../../assets/default.jpg'
 import {AiOutlineSave,AiFillSave} from 'react-icons/ai'
 import GetProfile from './../../config/getProfile'
+import GetTopicById from './../../config/GetTopicById'
 
 export default function Topic(props) {
     
-    let Temp = useLocation();
-
-    const[profile_img,setProfile_img] = useState(ProfileImage);
+    window.scrollTo(0,0)
+    const[topic, setTopic] = useState(getTopicData);
+    const[profile_img,setProfile_img] = useState(Default);
     
-    async function ProfileImage(){
-        let response =  await GetProfile(Temp.data.username);
+    async function getTopicData() {
+        const path = window.location.pathname;
+        const id = path.substring(path.lastIndexOf('/')+1);
+        let response = await GetTopicById(id);
+        setTopic(response);
+        let resp =  await GetProfile(response.username);
          if(response!==null){ 
-             setProfile_img(response.pop().profile_img);
+             setProfile_img(resp.pop().profile_img);
          }
-         else{
-             setProfile_img(Default);
-         }
-     }
+    }
+
     const[comment, setComment] = useState('');
     const[isSaved, setSave] = useState(false)
     const replyList = list.map(data=>{
@@ -42,8 +44,8 @@ export default function Topic(props) {
             <div className={'topic-section'}>
                  <div className={'header'}>
                      
-                           <h1>{Temp.data.title}</h1>
-                           <h4>{Temp.data.tag}</h4>
+                           <h1>{topic.title}</h1>
+                           <h4>{topic.tag}</h4>
                              <div onClick={()=>saveClick()}>
                              {isSaved? 
                              <div className={'header-heading-save'}><AiFillSave size={20}/><text>Saved</text></div> 
@@ -55,9 +57,9 @@ export default function Topic(props) {
                         <div className={'auther-icon'}>
                             <img src={profile_img} />
                         </div>
-                        <h3>{Temp.data.username}</h3>
+                        <h3>{topic.username}</h3>
                     </div>
-                    <text className={'topic-description'}>{Temp.data.description}</text>
+                    <text className={'topic-description'}>{topic.description}</text>
                  </div>  
            </div>
            <div className={'comment-box'}>

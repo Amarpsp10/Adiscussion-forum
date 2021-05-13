@@ -1,4 +1,4 @@
-import React,{useState,useEffect, Component} from 'react'
+import React,{Component} from 'react'
 import './Feed.css'
 import FeedItem from './Feed-item'
 import GetTopics from '../../../config/getTopics'
@@ -53,54 +53,3 @@ export default class Feed extends Component{
    }  
 }
 
-const list = [
-    {
-        id:'1',
-        username:'amrpsp10ka bahi',
-        title:'dkjfdks 1this is title parsed in thsdkfklsdkfjasfs',
-        description:'yea u got it this is descirption',
-        tag:'Internship',
-    },
-    {
-        id:'2',
-        username:'amrpsp10',
-        title:'2this is title parsed in thsdkfklsdkfjasfs',
-        description:'yea u got it this is descirption',
-        tag:'jatt',
-    },
-    {
-        id:'3',
-        username:'amrpsp10',
-        title:'3this is title parsed in thsdkfklsdkfjasfs',
-        description:'yea u got it this is descirption',
-        tag:'Recomendation',
-    },
-    {
-        id:'4',
-        username:'amrpsp10',
-        title:'4this is title parsed in thsdkfklsdkfjasfs',
-        description:'yea u got it this is descirption',
-        tag:'notag',
-    },
-    {
-        id:'5',
-        username:'amrpsp10',
-        title:'5this is title parsed in thsdkfklsdkfjasfs',
-        description:'yea u got it this is descirption',
-        tag:'notag',
-    },
-    {
-        id:'6',
-        username:'amrpsp10',
-        title:'6this is title parsed in thsdkfklsdkfjasfs',
-        description:'yea u got it this is descirption',
-        tag:'notag',
-    },
-    {
-        id:'7',
-        username:'amrpsp10',
-        title:'7this is title parsed in thsdkfklsdkfjasfs',
-        description:'yea u got it this is descirption',
-        tag:'notag',
-    },
-]
