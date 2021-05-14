@@ -30,7 +30,6 @@ export default function FeedItem(props) {
                              </Link>
                              <div className={'midle-field'}>
                                 <div className={'feed-list-icon'}>
-                                    {/* <RiAccountCircleFill size={40} /> */}
                                     <img src={profile_img}/>
                                 </div>
                                 <h4>{props.data.username}</h4> 

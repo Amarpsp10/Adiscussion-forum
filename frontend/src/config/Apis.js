@@ -28,6 +28,10 @@ export const isSavedTopic = 'topics/issaved/'
 export const saveUserTopics = 'savetopic/'
 // delete saved topic of user and send id as parameter
 export const deleteSavedTopic = 'topics/delete/'
+// Add comment of comment 
+export const addComment = 'comments/add/'
+// Get commnets of a topic , send topic_id as parameter
+export const getCommnets = 'comments/get/'
 
 //  post new user coin on this endpoint
 export const coins = 'coins/'

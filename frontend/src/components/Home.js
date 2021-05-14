@@ -23,10 +23,8 @@ export default function Home (){
             <ThemeProvider theme={theme}>
               <Paper style={{height:'100%'}} >
               {islogin==null ?
-                   <div style={{paddingTop:'300px'}} className={'loading-box'}>
-                   <div className={'loader'}>
-                     </div>    
-                </div> :
+                  <Welcome/>   
+                 :
                 <div>
              {islogin?
               <div>

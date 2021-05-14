@@ -20,7 +20,7 @@ export default async function LoginRequest(loginUsername,loginPassword){
         if(data.key) {
             localStorage.setItem('key',data.key);
             localStorage.setItem('username',loginUsername);
-            localStorage.setItem('password',loginPassword);
+           
             return true;
         }
         else{

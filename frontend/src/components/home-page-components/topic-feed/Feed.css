@@ -82,11 +82,6 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 760px) {
-  .feed {
-    margin-inline: 0.5%;
-  }
-}
 .midle-field {
   display: flex;
   flex-direction: row;
@@ -111,4 +106,13 @@
   text-decoration: underline;
   font-size: 20px;
   font-weight: bold;
+}
+
+@media screen and (max-width: 760px) {
+  .feed {
+    margin-inline: 0.5%;
+  }
+  .midle-field {
+    display: none;
+  }
 }

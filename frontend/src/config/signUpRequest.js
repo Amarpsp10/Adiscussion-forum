@@ -30,8 +30,7 @@ const response =  await fetch(`${baseurl}${signup}`, {
  return false;
  
  localStorage.setItem('username',regUsername);
- localStorage.setItem('Email',regEmail);
- localStorage.setItem('password',regPassword);
+ 
 
  await fetch(`${baseurl}${coins}`, {
     method: 'POST',
@@ -44,7 +43,7 @@ const response =  await fetch(`${baseurl}${signup}`, {
         username: regUsername,
         coins : 20
     })
-  }).then(res=>{return res.json()}).then(data=>{ localStorage.setItem('coins_id',data.id) })
+  })
 
  return true;
 }

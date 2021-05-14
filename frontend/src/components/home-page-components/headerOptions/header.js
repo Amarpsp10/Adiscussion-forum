@@ -14,7 +14,7 @@ import {FaInbox} from 'react-icons/fa'
 import {IoIosArrowDown,IoIosArrowUp} from 'react-icons/io'
 import Feed from './../topic-feed/Feed'
 import CreateTopicRequest from './../../../config/createTopic'
-
+import UpdateCoin from './../../../config/updateCoin'
   
 export default function Header(props){
     const[createTopicPop, setCreateTopicPop] =useState(false);
@@ -38,6 +38,7 @@ export default function Header(props){
         let response =  await CreateTopicRequest(localStorage.getItem('username'),topicTitle,createTopicTag,topicDiscription)
         if(response){
             onCancelCrateTopic();
+            await UpdateCoin(localStorage.getItem('username'),20)
             window.location.reload(false);
         }
         setCreateTopicError('Already Given Title Exist');
