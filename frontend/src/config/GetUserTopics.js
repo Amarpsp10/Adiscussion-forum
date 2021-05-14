@@ -1,8 +1,8 @@
-import {baseurl,getUserTopic} from "./Apis";
+import {baseurl, userTopic} from "./Apis";
 
 export default async function GetUserTopics(username){
 
-    const response =  await fetch(`${baseurl}${getUserTopic}${username}/`, {
+    const response =  await fetch(`${baseurl}${userTopic}${username}/`, {
         method: 'GET',
         headers: {
             "Accept": "application/json",

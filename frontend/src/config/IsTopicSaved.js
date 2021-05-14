@@ -1,8 +1,7 @@
-import {baseurl,savedTopics} from './Apis'
+import {baseurl, isSavedTopic} from './Apis'
 
-export default async function GetSavedTopic(username) {
-
-    const response =  await fetch(`${baseurl}${savedTopics}${username}/`, {
+export default async function IsTopicSaved(saver,topic_id) {
+    const response =  await fetch(`${baseurl}${isSavedTopic}${saver}/${topic_id}/`, {
         method: 'GET',
         headers: {
             "Accept": "application/json",
@@ -12,4 +11,4 @@ export default async function GetSavedTopic(username) {
     }).then(res=>{return res.json()})
     
     return response;
-} 
+}

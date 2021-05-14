@@ -18,12 +18,16 @@ export const getProfile = 'profile/get/'
 
 //get all topics and send id to get particular topic
 export const topic  = 'topics/'
+//get topics created by user , paas username as parameter
+export const userTopic = 'topics/user/'
 // get topics saved by user and send the username as parameter
-export const savedTopics = 'topics/saved/'
-//update topics saved by user
-export const updateSavedTopics = 'topics/update/saved/'
-//get posts created by user , send username as parameter
-export const getUserTopic = 'topics/user/'
+export const savedTopics = 'topics/saved/' 
+//to find out initially topic saved or not, send saver username and toic_id as parameter
+export const isSavedTopic = 'topics/issaved/' 
+//update or save topics for user , post on 
+export const saveUserTopics = 'savetopic/'
+// delete saved topic of user and send id as parameter
+export const deleteSavedTopic = 'topics/delete/'
 
 //  post new user coin on this endpoint
 export const coins = 'coins/'
