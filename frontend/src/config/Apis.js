@@ -22,6 +22,8 @@ export const topic  = 'topics/'
 export const savedTopics = 'topics/saved/'
 //update topics saved by user
 export const updateSavedTopics = 'topics/update/saved/'
+//get posts created by user , send username as parameter
+export const getUserTopic = 'topics/user/'
 
 //  post new user coin on this endpoint
 export const coins = 'coins/'
