@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Topic, SavedTopics
+from .models import Topic, SavedTopics, Comments
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
-from .serializers import TopicSerializer, SavedTopicsSerializer
+from .serializers import TopicSerializer, SavedTopicsSerializer, CommentSerializer
 # Create your views here.
 
 
@@ -45,3 +45,16 @@ class IsSaved(generics.ListAPIView):
         saver = self.kwargs['saver']
         topic_id = self.kwargs['topic_id']
         return SavedTopics.objects.filter(saver=saver, topic_id=topic_id)
+
+
+class AddComment(viewsets.ModelViewSet):
+    queryset = Comments.objects.all()
+    serializer_class = CommentSerializer
+
+
+class GetComments(generics.ListAPIView):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        topic_id = self.kwargs['topic_id']
+        return Comments.objects.filter(topic_id=topic_id)
