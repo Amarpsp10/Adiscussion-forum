@@ -36,3 +36,12 @@ class GetUserSavedTopics(generics.ListAPIView):
 class DeleteSavedTopics(generics.RetrieveDestroyAPIView):
     queryset = SavedTopics.objects.all()
     serializer_class = SavedTopicsSerializer
+
+
+class IsSaved(generics.ListAPIView):
+    serializer_class = SavedTopicsSerializer
+
+    def get_queryset(self):
+        saver = self.kwargs['saver']
+        topic_id = self.kwargs['topic_id']
+        return SavedTopics.objects.filter(saver=saver, topic_id=topic_id)

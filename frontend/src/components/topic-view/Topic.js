@@ -7,26 +7,40 @@ import Default from './../../assets/default.jpg'
 import {AiOutlineSave,AiFillSave} from 'react-icons/ai'
 import GetProfile from './../../config/getProfile'
 import GetTopicById from './../../config/GetTopicById'
-
+import SaveUserTopic from './../../config/saveUserTopic'
+import IsTopicSaved from './../../config/IsTopicSaved'
+import UnSaveTopic from './../../config/UnSavedTopic'
 export default function Topic(props) {
     
     window.scrollTo(0,0)
     const[topic, setTopic] = useState(getTopicData);
     const[profile_img,setProfile_img] = useState(Default);
-    
+    const[isSaved, setSave] = useState(false)
+    const[saveTopicId, setSaveTopicId] = useState(null)
     async function getTopicData() {
         const path = window.location.pathname;
         const id = path.substring(path.lastIndexOf('/')+1);
         let response = await GetTopicById(id);
         setTopic(response);
         let resp =  await GetProfile(response.username);
-         if(response!==null){ 
-             setProfile_img(resp.pop().profile_img);
-         }
+        if(response!==null){ 
+            setProfile_img(resp.pop().profile_img);
+        }
+        let savestatus = await IsTopicSaved(localStorage.getItem('username'),id);
+        if(savestatus.length){
+            setSave(true);
+            setSaveTopicId(savestatus.pop().id)
+        }
     }
+    
+    const[comment, setComment] = useState(false);
+    
 
-    const[comment, setComment] = useState('');
-    const[isSaved, setSave] = useState(false)
+    async function isTopicSaved() {
+            console.log(topic)
+            let savestatus = await IsTopicSaved(localStorage.getItem('username'),topic.id);
+            setSave(savestatus);
+    }
     const replyList = list.map(data=>{
            return <Reply username={data.username} reply={data.reply}/>
         });
@@ -36,8 +50,19 @@ export default function Topic(props) {
         console.log(comment);
         
     }
-    const saveClick = ()=>{
-        setSave(!isSaved);
+    async function saveClick(){
+        if(!isSaved){
+          let response =await SaveUserTopic(localStorage.getItem('username'),topic.username,topic.title,topic.tag,topic.id)
+          setSaveTopicId(response.id)
+          console.log(response.id)
+          setSave(true);
+          return;
+        }
+        else{
+            let unsave = await UnSaveTopic(saveTopicId)
+            console.log(unsave)
+            setSave(false);            
+        }
     }
     return(
         <div className={'topic-page'}>
@@ -46,12 +71,22 @@ export default function Topic(props) {
                      
                            <h1>{topic.title}</h1>
                            <h4>{topic.tag}</h4>
-                             <div onClick={()=>saveClick()}>
-                             {isSaved? 
-                             <div className={'header-heading-save'}><AiFillSave size={20}/><text>Saved</text></div> 
-                             : <div className={'header-heading-save'}><AiOutlineSave size={20}/><text>Save</text></div>
+                           {topic.id? 
+                              
+                              <div  onClick={()=>saveClick()}>
+                              <div className={'header-heading-save'} style={{backgroundColor:isSaved?'black':'white',color:isSaved?'white':'black'}}>
+                                  <div className={'header-save-icon'}>
+                                  <AiFillSave size={20}/>
+                                  </div>
+                                  {isSaved? 
+                                  <text>Saved</text>
+                                  : <text>Save</text>
+                                  }
+                               </div>
+                               </div>
+                            : 
+                              <div></div>
                             }
-                            </div>
                     <hr/>
                     <div className={'auther'}>
                         <div className={'auther-icon'}>
@@ -59,7 +94,7 @@ export default function Topic(props) {
                         </div>
                         <h3>{topic.username}</h3>
                     </div>
-                    <text className={'topic-description'}>{topic.description}</text>
+                    <text  className={'topic-description'}>{topic.description}</text>
                  </div>  
            </div>
            <div className={'comment-box'}>

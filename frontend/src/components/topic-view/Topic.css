@@ -28,6 +28,17 @@
 }
 .header-heading-save {
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  border: solid 1px;
+  width: fit-content;
+  border-radius: 5px;
+  padding-inline: 3px;
+}
+.header-save-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .header-heading-save text {
   align-content: center;

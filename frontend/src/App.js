@@ -9,7 +9,7 @@ import ProfilePage from  './components/personal-profile/PersonalProfile'
 import InboxPage from './components/inbox/Inbox'
 import SavedPage from './components/saved-posts/SavedPost'
 import WelcomePage from './components/welcome-page/welcome'
-
+import MyTopics from './components/my-posts/MyPost'
 class App extends Component{
   
    
@@ -25,6 +25,7 @@ class App extends Component{
        <Route path='/profile' component={ProfilePage} exact/>
        <Route path='/inbox'  component={InboxPage} exact/>
        <Route path='/saved-post' component={SavedPage} exact/>
+       <Route path='/my-post' component={MyTopics} exact/>
        </Switch>
     </div>
     );

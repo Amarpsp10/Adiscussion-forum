@@ -7,13 +7,12 @@ import {IoLogOut} from 'react-icons/io5'
 import {IoIosSave} from 'react-icons/io' 
 import { Link, useHistory } from 'react-router-dom'
 import {IoHome} from 'react-icons/io5'
-
+import {AiFillProfile} from 'react-icons/ai'
 export default function AccountMenu(props) {
     
     async function Logout(){
         localStorage.removeItem('key');
         localStorage.removeItem('username');
-        localStorage.removeItem('password');
     }
 
     return(
@@ -42,6 +41,16 @@ export default function AccountMenu(props) {
             <h4>Inbox</h4>
         </div>
         </Link>
+
+        <Link to="/my-post" style={{textDecoration:'none',color:'black'}}>
+        <div onClick={()=>console.log('hellll')} className={'account-menu-item'}>
+            <div className={'account-menu-item-icon'}>
+            <AiFillProfile size={20} />
+            </div>
+            <h4>My Topics</h4>
+        </div>
+        </Link>
+
         <Link to="/saved-post" style={{textDecoration:'none',color:'black'}}>
         <div onClick={()=>console.log('hellll')} className={'account-menu-item'}>
             <div className={'account-menu-item-icon'}>
@@ -50,7 +59,7 @@ export default function AccountMenu(props) {
             <h4>Saved</h4>
         </div>
         </Link>
-        {/* <Link to="/" style={{textDecoration:'none',color:'black'}}> */}
+      
         <a href='/' style={{textDecoration:'none'}}>
         <div onClick={()=> Logout()} className={'account-menu-item'}>
             <div className={'account-menu-item-icon'}>
@@ -59,7 +68,7 @@ export default function AccountMenu(props) {
             <h4>Logout</h4>
         </div>
         </a>
-        {/* </Link> */}
+      
       </div>
     );
     
