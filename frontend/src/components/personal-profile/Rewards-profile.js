@@ -37,10 +37,16 @@ export default class Rewards extends Component {
                  <RiCoinsLine/>= {this.state.coins}
                  </text>
           </div>
-
           </div>
         }
           <text className={'coins-button'}>Redeem</text>
+
+          <ul className={'rewards-list'}>
+            <li>Create topic and get 20<RiCoinsLine/> Coins.</li>
+            <li>Comment on topic and get 5<RiCoinsLine/> Coins.</li>
+            <li>Save topic and get 2<RiCoinsLine/> Coins.(unsaving topic deducted 2 coins)</li>
+            <li>Start Chat with new person and get 10<RiCoinsLine/> Coins.</li>
+          </ul>
         </div>
     );
   }

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
-from topic.views import TopicViewSet, GetUserTopic, SavedTopicViewSet, GetUserSavedTopics, DeleteSavedTopics, IsSaved
+from topic.views import TopicViewSet, GetUserTopic, SavedTopicViewSet, GetUserSavedTopics, DeleteSavedTopics, IsSaved, AddComment, GetComments
 from profiles.views import ProfileViewSet, CreateProfile, UpdateProfile, GetProfile
 from rewards.views import CoinViewSet, UpdateCoin, GetCoins
 from rest_framework import routers
@@ -30,6 +30,7 @@ router.register(r'profiles', ProfileViewSet)
 router.register(r'coins', CoinViewSet)
 router.register(r'profile/create', CreateProfile)
 router.register(r'savetopic', SavedTopicViewSet)
+router.register(r'comments/add', AddComment)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -49,7 +50,9 @@ urlpatterns = [
     path('topics/delete/<int:pk>/',
          DeleteSavedTopics.as_view(), name='deletesavedtopics'),
     path('topics/issaved/<str:saver>/<int:topic_id>/',
-         IsSaved.as_view(), name='istopicsaved')
+         IsSaved.as_view(), name='istopicsaved'),
+    path('comments/get/<int:topic_id>/',
+         GetComments.as_view(), name='getcommentoftopic')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

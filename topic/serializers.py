@@ -5,7 +5,7 @@ from .models import Topic, SavedTopics, Comments
 class TopicSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Topic
-        fields = ['id', 'username', 'title', 'tag', 'description', 'replies']
+        fields = ['id', 'username', 'title', 'tag', 'description']
 
 
 class SavedTopicsSerializer(serializers.HyperlinkedModelSerializer):

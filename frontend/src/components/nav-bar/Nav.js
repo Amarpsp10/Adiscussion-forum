@@ -1,33 +1,32 @@
 import React, { Component,useState,useEffect} from 'react'
 import './Nav.css'
-import Switch from '@material-ui/core/Switch';
 import MissionEd_logo from './../../assets/MissionEd_logo.svg'
 import { ThemeProvider } from '@material-ui/styles';
 import Modal from 'react-modal'
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { createMuiTheme, Paper,Button , TextField,ColorButton } from '@material-ui/core';
-import {FiMoon,FiSun} from 'react-icons/fi'
 import axios from 'axios';
 import LoginRequest from './../../config/loginRequest'
 import SignUpRequest from './../../config/signUpRequest'
-import {RiAccountCircleFill} from 'react-icons/ri'
 import AccountMenu from './AccountMenu'
 import {Link, Redirect,useHistory} from 'react-router-dom'
 import Default from './../../assets/default.jpg'
 import {BsPencilSquare} from 'react-icons/bs'
-import WelcomePage from './../welcome-page/welcome'
 import {baseurl,createProfile} from './../../config/Apis'
 import GetProfile from './../../config/getProfile'
 Modal.setAppElement('#root');
 
 
 export default function Nav(props){
+    const[profile_img,setProfile_img] = useState(Default);
     const[islogin, setLogin] = useState(loginStatus);
-    const[profile_img,setProfile_img] = useState(ProfileImage);
     function loginStatus(){
-       if(localStorage.getItem('key')) 
+       if(localStorage.getItem('key')!==null){
+            GetProfile(localStorage.getItem('username')).then((response)=>{setProfile_img(response.pop().profile_img)})
            return true;
-       return false 
+        }
+       else{
+           return false
+       }
     }
     let history = useHistory();
     const redirect = () => {
@@ -44,6 +43,7 @@ export default function Nav(props){
 
         //  return response.profile_img
      }
+   
 
     const[accountMenu,setAccountIconMenu] = useState(false);
     const[user,setUser] = useState([]);
@@ -86,7 +86,7 @@ export default function Nav(props){
     })
      async function signUpUser(){
         if(regUsername=='' || regEmail=='' || regPassword=='' || shareImage=='' || regName=='' || regCompany=='' || regAbout=='' || regLocation==''){
-            alert('please fill form completly');
+            alert('please fill all fields with profile imgaes');
             return ;
         }
         let SignUpResponse = await SignUpRequest(regUsername,regEmail,regPassword);
@@ -109,7 +109,7 @@ export default function Nav(props){
         await LoginRequest(regUsername,regPassword);  
         window.location.reload(false);
         }
-        setSignupError('Error please Enter correct values')
+        setSignupError('Error please create strong password')
     }
    async function loginUser () {
         if(loginUsername=='' || loginPassword==''){

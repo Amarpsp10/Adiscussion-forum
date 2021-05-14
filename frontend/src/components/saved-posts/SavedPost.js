@@ -60,12 +60,12 @@ export default class Feed extends Component{
                                                <h3 style={{textDecorationLine:'none'}}>{data.title}</h3>
                                               </div>
                                                   </Link>
-                                                  <div className={'midle-field'}>
+                                                  {/* <div className={'midle-field'}>
                                                      <div className={'feed-list-icon'}>
                                                          <img src={this.profile_img(data.username)}/>
                                                      </div>
                                                      <h4>{data.username}</h4> 
-                                                  </div>
+                                                  </div> */}
                                               <div className={'topic-tag'}>
                                              <h3>{data.tag}</h3>
                                               </div>

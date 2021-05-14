@@ -95,3 +95,8 @@
   margin: 5px;
   box-shadow: gray 2px 2px 1px;
 }
+.rewards-list {
+  text-align: left;
+  text-decoration: underline;
+  font-weight: bold;
+}

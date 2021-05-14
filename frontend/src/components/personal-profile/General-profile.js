@@ -48,6 +48,7 @@ export default class General extends Component{
          "X-CSRFToken": "$crf_token"
         }
       }).then(res=>{if(res.state===200) window.location.reload(false)})
+      alert('Profile updated succesfully')
     }
     
     render(){
