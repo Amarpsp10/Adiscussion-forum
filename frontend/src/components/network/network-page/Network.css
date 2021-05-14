@@ -2,6 +2,7 @@
   padding-top: 100px;
   background-color: rgb(192, 192, 192);
   padding-inline: 20%;
+  min-height: 90vh;
 }
 .profiles-section {
   margin-top: 20px;

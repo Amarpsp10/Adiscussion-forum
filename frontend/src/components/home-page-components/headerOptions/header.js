@@ -28,10 +28,7 @@ export default function Header(props){
     const theme = 'dark';
    
     async function createTopic (){
-        console.log(topicTitle);
-        console.log(topicDiscription);
-        console.log(createTopicTag);
-        if(topicTitle==='' && topicDiscription===''){
+        if(topicTitle==='' || topicDiscription===''){
             alert('fill the all form complete')
             return ;
         }
