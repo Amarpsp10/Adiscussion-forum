@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Topic, SavedTopic
+from .models import Topic, SavedTopics
 
 
 class TopicSerializer(serializers.HyperlinkedModelSerializer):
@@ -8,7 +8,7 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'username', 'title', 'tag', 'description', 'replies']
 
 
-class SavedTopicSerializer(serializers.HyperlinkedModelSerializer):
+class SavedTopicsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = SavedTopic
-        fields = ['id', 'username', 'saved_topic']
+        model = SavedTopics
+        fields = ['id', 'saver', 'username', 'title', 'tag', 'topic_id']

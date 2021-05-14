@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Topic, SavedTopic
+from .models import Topic, SavedTopics
 # Register your models here.
 
 
@@ -9,7 +9,7 @@ class TopicAdmin(admin.ModelAdmin):
     list_filter = ['title']
 
 
-@admin.register(SavedTopic)
+@admin.register(SavedTopics)
 class SavedTopicAdmin(admin.ModelAdmin):
-    list_display = ['id', 'username', 'saved_topic']
+    list_display = ['id', 'saver', 'username', 'title', 'tag', 'topic_id']
     list_filter = ['username']

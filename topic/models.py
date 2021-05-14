@@ -13,6 +13,12 @@ class Topic(models.Model):
         return self.title
 
 
-class SavedTopic(models.Model):
-    username = models.CharField(max_length=50, unique=True)
-    saved_topic = models.TextField(blank=True)
+class SavedTopics(models.Model):
+    saver = models.CharField(max_length=50)
+    username = models.CharField(max_length=50)
+    title = models.CharField(max_length=100, unique=True)
+    tag = models.CharField(max_length=50)
+    topic_id = models.IntegerField()
+
+    def __str__(self):
+        return self.saver

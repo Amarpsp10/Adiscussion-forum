@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Topic, SavedTopic
+from .models import Topic, SavedTopics
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework import generics
-from .serializers import TopicSerializer, SavedTopicSerializer
+from .serializers import TopicSerializer, SavedTopicsSerializer
 # Create your views here.
 
 
@@ -20,27 +20,19 @@ class GetUserTopic(generics.ListAPIView):
         return Topic.objects.filter(username=username)
 
 
-class SearchTopics(generics.ListAPIView):
-    serializer_class = TopicSerializer
-
-    def get_queryset(self):
-        username = self.kwargs['username']
-        return Topic.objects.filter(username=username)
-
-
 class SavedTopicViewSet(viewsets.ModelViewSet):
-    queryset = SavedTopic.objects.all()
-    serializer_class = SavedTopicSerializer
+    queryset = SavedTopics.objects.all()
+    serializer_class = SavedTopicsSerializer
 
 
-class SavedTopics(generics.ListAPIView):
-    serializer_class = SavedTopicSerializer
+class GetUserSavedTopics(generics.ListAPIView):
+    serializer_class = SavedTopicsSerializer
 
     def get_queryset(self):
-        username = self.kwargs['username']
-        return SavedTopic.objects.filter(username=username)
+        saver = self.kwargs['saver']
+        return SavedTopics.objects.filter(saver=saver)
 
 
-class UpdateSavedTopic(generics.UpdateAPIView):
-    queryset = SavedTopic.objects.all()
-    serializer_class = SavedTopicSerializer
+class DeleteSavedTopics(generics.RetrieveDestroyAPIView):
+    queryset = SavedTopics.objects.all()
+    serializer_class = SavedTopicsSerializer
