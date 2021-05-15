@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%7*e6xfh=s%1n+#l6(sjf&*i6qkam^9@skad4mie^$h$7*=2xs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -156,5 +156,4 @@ CORS_ORIGIN_WHITELIST = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Configure Django App for Heroku.
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
