@@ -1,6 +1,6 @@
 # Adiscussion-forum
 A discussion forum to connect with community.
-Builded with <b>Dango REST Framework</b> and <b>ReactJS</b>
+Buildt with <b>Dango REST Framework</b> and <b>ReactJS</b>
 
 Features-
  1. Login and Signup with token authentication
